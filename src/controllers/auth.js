@@ -1,7 +1,7 @@
 const { UserModel } = require('../models');
 /**
  * @typedef {'login'|'register'} AuthController
- * @type {Record<string, import('express').RequestHandler>}
+ * @type {Record<AuthController, import('express').RequestHandler>}
  */
 const auth = {
   login: async (req, res, next) => {
