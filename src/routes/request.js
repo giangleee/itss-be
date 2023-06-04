@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const requestRouter = require('./request');
-const { errorHandler } = require('../middlewares');
+const { request: requestController } = require('../controllers');
+const { validate } = require('../middlewares');
+const {
+  requestValidation: { createOnerequest },
+} = require('../validations');
 
 /**
  * This function is used to initialize all routes
@@ -9,8 +12,7 @@ const { errorHandler } = require('../middlewares');
  * @returns {express.Router}
  */
 const initRouter = (router) => {
-  router.use('/request', requestRouter);
-  router.use(errorHandler);
+  router.post('/', validate(createOnerequest()), requestController.createOne);
   return router;
 };
 
