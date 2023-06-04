@@ -5,7 +5,8 @@ const {
   StaffModel,
 } = require('../models');
 /**
- * @type {Record<string, import('express').RequestHandler>}
+ * @typedef {'createOne'|'getListApplyStaff'} RequestController
+ * @type {Record<RequestController, import('express').RequestHandler>}
  */
 const request = {
   /**

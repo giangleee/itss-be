@@ -1,5 +1,6 @@
 const { UserModel } = require('../models');
 /**
+ * @typedef {'login'|'register'} AuthController
  * @type {Record<string, import('express').RequestHandler>}
  */
 const auth = {
