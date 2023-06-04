@@ -1,5 +1,5 @@
 const validator = require('express-validator');
-const { body } = validator;
+const { body, param } = validator;
 /**
  * Validation rules for request.createOne
  * @returns {Array<validator.ValidationChain>} Array of validation rules
@@ -23,4 +23,8 @@ const createOnerequest = () => [
     .isTime()
     .withMessage('term must be a time'),
 ];
-module.exports = { requestValidation: { createOnerequest } };
+const getListApplyStaff = () => [
+  param('request_id').notEmpty().withMessage('requestId is required'),
+  param('request_id').isMongoId().withMessage('requestId must be a mongoId'),
+];
+module.exports = { requestValidation: { createOnerequest, getListApplyStaff } };

@@ -1,8 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const requestRouter = require('./request');
-const staffRouter = require('./staff');
-const { errorHandler } = require('../middlewares');
 
 /**
  * This function is used to initialize all routes
@@ -10,9 +7,6 @@ const { errorHandler } = require('../middlewares');
  * @returns {express.Router}
  */
 const initRouter = (router) => {
-  router.use('/request', requestRouter);
-  router.use('/staff', staffRouter);
-  router.use(errorHandler);
   return router;
 };
 
