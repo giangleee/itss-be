@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const requestRouter = require('./request');
 const staffRouter = require('./staff');
+const authRouter = require('./auth');
 const { errorHandler } = require('../middlewares');
 
 /**
@@ -12,6 +13,7 @@ const { errorHandler } = require('../middlewares');
 const initRouter = (router) => {
   router.use('/request', requestRouter);
   router.use('/staff', staffRouter);
+  router.use('/auth', authRouter);
   router.use(errorHandler);
   return router;
 };

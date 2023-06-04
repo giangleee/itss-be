@@ -26,7 +26,7 @@ const request = {
         job: jobValue,
         request_detail_id: requestDetail._id,
       });
-      res.status(203).json({ message: 'Create request successfully', data: request });
+      res.status(201).json({ message: 'Create request successfully', data: request });
     } catch (error) {
       next(error);
     }
