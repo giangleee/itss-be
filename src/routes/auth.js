@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { requestController } = require('../controllers');
+const { authController } = require('../controllers');
 const { validate } = require('../middlewares');
 const {
-  requestValidation: { createOnerequest, getListApplyStaff },
+  authValidation: { login, register },
 } = require('../validations');
 
 /**
@@ -12,12 +12,8 @@ const {
  * @returns {express.Router}
  */
 const initRouter = (router) => {
-  router.post('/', validate(createOnerequest()), requestController.createOne);
-  router.get(
-    '/list-apply-staff/:request_id',
-    validate(getListApplyStaff()),
-    requestController.getListApplyStaff,
-  );
+  router.post('/login', validate(login()), authController.login);
+  router.post('/register', validate(register()), authController.register);
   return router;
 };
 
