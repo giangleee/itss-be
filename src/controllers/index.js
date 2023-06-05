@@ -1,5 +1,7 @@
-const request = require('./request');
+const requestController = require('./request');
+const authController = require('./auth');
 
 module.exports = {
-  request,
+  requestController,
+  authController,
 };
