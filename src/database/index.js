@@ -9,7 +9,7 @@ const connectDatabase = async (url) => {
     },
     (err) => {
       console.log(`Error when connecting`, err);
-    }
+    },
   );
 };
 

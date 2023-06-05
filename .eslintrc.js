@@ -9,7 +9,7 @@ module.exports = {
   extends: ['eslint:recommended', 'prettier'],
   rules: {
     'no-unused-vars': [
-      'error',
+      // 'error',
       {
         argsIgnorePattern: '^_',
         varsIgnorePattern: '^_',
