@@ -1,0 +1,130 @@
+[{
+  "_id": {
+    "$oid": "647e1480baf0eb534030d778"
+  },
+  "staff_id": "647e12a1baf0eb534030d769",
+  "user_id": "647e0cd8baf0eb534030d729",
+  "work_time": "8h-17h",
+  "salary": 10000000,
+  "policy": "Bảo hiểm y tế",
+  "term": "1 năm",
+  "other_note": "Không có ghi chú",
+  "status": 0
+},
+{
+  "_id": {
+    "$oid": "647e1480baf0eb534030d779"
+  },
+  "staff_id": "647e12a1baf0eb534030d76a",
+  "user_id": "647e0cd8baf0eb534030d72a",
+  "work_time": "9h-18h",
+  "salary": 12000000,
+  "policy": "Bảo hiểm tai nạn",
+  "term": "2 năm",
+  "other_note": "Cần nhân viên có kinh nghiệm",
+  "status": 1
+},
+{
+  "_id": {
+    "$oid": "647e1480baf0eb534030d77a"
+  },
+  "staff_id": "647e12a1baf0eb534030d76b",
+  "user_id": "647e0cd8baf0eb534030d72b",
+  "work_time": "7h-16h",
+  "salary": 8000000,
+  "policy": "Bảo hiểm y tế",
+  "term": "3 tháng",
+  "other_note": "Yêu cầu năng động",
+  "status": 2
+},
+{
+  "_id": {
+    "$oid": "647e1480baf0eb534030d77b"
+  },
+  "staff_id": "647e12a1baf0eb534030d76c",
+  "user_id": "647e0cd8baf0eb534030d72c",
+  "work_time": "6h-15h",
+  "salary": 9000000,
+  "policy": "Bảo hiểm tai nạn",
+  "term": "6 tháng",
+  "other_note": "Cần nhân viên có kỹ năng giao tiếp",
+  "status": 3
+},
+{
+  "_id": {
+    "$oid": "647e1480baf0eb534030d77c"
+  },
+  "staff_id": "647e12a1baf0eb534030d76d",
+  "user_id": "647e0cd8baf0eb534030d72d",
+  "work_time": "8h-17h",
+  "salary": 10000000,
+  "policy": "Bảo hiểm y tế",
+  "term": "1 năm",
+  "other_note": "Không có ghi chú",
+  "status": 0
+},
+{
+  "_id": {
+    "$oid": "647e1480baf0eb534030d77d"
+  },
+  "staff_id": "647e12a1baf0eb534030d76e",
+  "user_id": "647e0cd8baf0eb534030d72e",
+  "work_time": "9h-18h",
+  "salary": 12000000,
+  "policy": "Bảo hiểm tai nạn",
+  "term": "2 năm",
+  "other_note": "Cần nhân viên có kinh nghiệm",
+  "status": 1
+},
+{
+  "_id": {
+    "$oid": "647e1480baf0eb534030d77e"
+  },
+  "staff_id": "647e12a1baf0eb534030d76f",
+  "user_id": "647e0cd8baf0eb534030d72f",
+  "work_time": "7h-16h",
+  "salary": 8000000,
+  "policy": "Bảo hiểm y tế",
+  "term": "3 tháng",
+  "other_note": "Yêu cầu năng động",
+  "status": 2
+},
+{
+  "_id": {
+    "$oid": "647e1480baf0eb534030d77f"
+  },
+  "staff_id": "647e12a1baf0eb534030d769",
+  "user_id": "647e0cd8baf0eb534030d730",
+  "work_time": "6h-15h",
+  "salary": 9000000,
+  "policy": "Bảo hiểm tai nạn",
+  "term": "6 tháng",
+  "other_note": "Cần nhân viên có kỹ năng giao tiếp",
+  "status": 3
+},
+{
+  "_id": {
+    "$oid": "647e1480baf0eb534030d780"
+  },
+  "staff_id": "647e12a1baf0eb534030d769",
+  "user_id": "647e0cd8baf0eb534030d731",
+  "work_time": "8h-17h",
+  "salary": 10000000,
+  "policy": "Bảo hiểm y tế",
+  "term": "1 năm",
+  "other_note": "Không có ghi chú",
+  "status": 0
+},
+{
+  "_id": {
+    "$oid": "647e1480baf0eb534030d781"
+  },
+  "staff_id": "647e12a1baf0eb534030d769",
+  "user_id": "647e0cd8baf0eb534030d732",
+  "work_time": "9h-18h",
+  "salary": 12000000,
+  "policy": "Bảo hiểm tai nạn",
+  "term": "2 năm",
+  "other_note": "Cần nhân viên có kinh nghiệm",
+  "status": 1
+}]
