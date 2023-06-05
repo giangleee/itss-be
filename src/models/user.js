@@ -1,6 +1,5 @@
 const { Schema, model } = require('mongoose');
 const { ObjectId } = require('mongoose').Types;
-const jwt = require('jsonwebtoken');
 
 const GENDER = {
   MAN: 0,
@@ -69,13 +68,5 @@ const User = Schema(
     versionKey: false,
   },
 );
-User.methods.comparePassword = function (password) {
-  // return bcrypt.compareSync(password, this.password)
-  return password === this.password;
-};
-User.methods.genToken = function () {
-  return jwt.sign({ _id: this._id }, process.env.JWT_SECRET, {
-    expiresIn: '7d',
-  });
-};
+
 module.exports = model('User', User);

@@ -1,33 +1,33 @@
-const { UserModel } = require('../models');
+const { UserDaos } = require('../daos');
+const { UserService } = require('../services');
+const httpCode = require('../utils/http-codes')
+
 /**
  * @typedef {'login'|'register'} AuthController
  * @type {Record<AuthController, import('express').RequestHandler>}
  */
 const auth = {
   login: async (req, res, next) => {
-    try {
-      const { email, password } = req.body;
-      const user = await UserModel.findOne({ email });
-      if (!user) throw 'User not found';
-      const isMatch = await user.comparePassword(password);
-      if (!isMatch) throw 'Wrong password';
-      const token = user.genToken();
-      res.json({ message: 'Login successfully', data: { token } });
-    } catch (error) {
-      next(error);
-    }
+    const { email, password } = req.body;
+    const user = await UserDaos.findOne({ email });
+    if (!user) throw 'User not found';
+
+    const isMatch = await UserService.comparePassword(password, user.password);
+    if (!isMatch) throw 'Wrong password';
+
+    const token = UserService.genToken(user._id);
+
+    res.status(httpCode.SUCCESS).json({ message: 'Login successfully', data: { token } });
   },
+
   register: async (req, res, next) => {
     //emailpasswordfullnamecccdgenderdate_of_birthavataraddressrole_idlang_idcreate_atphone_numbertoken
-    try {
-      const email = req.body.email;
-      const result = await UserModel.findOne({ email });
-      if (result) throw 'Email already exists';
-      const user = await UserModel.create(req.body);
-      res.status(201).json({ message: 'Register successfully', data: user });
-    } catch (error) {
-      next(error);
-    }
+    const email = req.body.email;
+    const result = await UserDaos.findOne({ email });
+    if (result) throw 'Email already exists';
+
+    const user = await UserDaos.createUser(req.body);
+    res.status(httpCode.CREATED_SUCCESS).json({ message: 'Register successfully', data: user });
   },
 };
 
