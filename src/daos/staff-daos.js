@@ -3,7 +3,7 @@ const httpCodes = require('../utils/http-codes');
 const customApiMessage = require('../errors/CustomApiMessage');
 
 const StaffDaos = {
-  findWithCondition: async (staff_ids) => {
+  findWithCondition: async (staff_ids, tab, size) => {
     try {
       const response = await StaffModel.find({ _id: { $in: staff_ids } })
         .select('-cccd -facebook -phone_number -twitter -zalo')

@@ -3,7 +3,12 @@ const router = express.Router();
 const { requestController } = require('../controllers');
 const { validate } = require('../middlewares');
 const {
-  requestValidation: { createOnerequest, getListApplyStaff },
+  requestValidation: {
+    createOnerequest,
+    getListApplyStaff,
+    removeStaffFromRequestListStaff,
+    acceptStaffFromRequestListStaff,
+  },
 } = require('../validations');
 
 /**
@@ -13,11 +18,18 @@ const {
  */
 const initRouter = (router) => {
   router.post('/', validate(createOnerequest()), requestController.createOne);
-  router.get(
-    '/list-apply-staff/:request_id',
-    validate(getListApplyStaff()),
-    requestController.getListApplyStaff,
+  router.post(
+    '/:request_id/accept/:staff_id',
+    validate(acceptStaffFromRequestListStaff()),
+    requestController.acceptStaffFromRequestListStaff,
   );
+  router
+    .route('/list-apply-staff/:request_id')
+    .get(validate(getListApplyStaff()), requestController.getListApplyStaff)
+    .patch(
+      validate(removeStaffFromRequestListStaff()),
+      requestController.removeStaffFromRequestListStaff,
+    );
   return router;
 };
 

@@ -10,7 +10,6 @@ const Staff = Schema(
   {
     rating_avg: {
       type: Number,
-      unique: true,
     },
     cccd: {
       type: String,

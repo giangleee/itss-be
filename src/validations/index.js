@@ -1,5 +1,5 @@
 const validator = require('express-validator');
-const { body, param } = validator;
+const { body, param, query } = validator;
 /**
  * Validation rules for request.createOne
  * @returns {Array<validator.ValidationChain>} Array of validation rules
@@ -17,15 +17,23 @@ const createOnerequest = () => [
     .isFloat()
     .withMessage('salary must be a number'),
   body('request_detail.policy').notEmpty().withMessage('policy is required'),
-  body('request_detail.term')
-    .notEmpty()
-    .withMessage('term is required')
-    .isTime()
-    .withMessage('term must be a time'),
+  body('request_detail.term').notEmpty().withMessage('term is required'),
 ];
 const getListApplyStaff = () => [
   param('request_id').notEmpty().withMessage('requestId is required'),
   param('request_id').isMongoId().withMessage('requestId must be a mongoId'),
+  query('tab').optional().isNumeric().withMessage('tab must be a number'),
+  query('page').optional().isNumeric().withMessage('page must be a number'),
+];
+const removeStaffFromRequestListStaff = () => [
+  body('staffs').notEmpty().withMessage("staffs'id array is required"),
+  body('staffs.*').isMongoId().withMessage("staffs'id must be a mongoId"),
+];
+const acceptStaffFromRequestListStaff = () => [
+  param('request_id').notEmpty().withMessage('requestId is required'),
+  param('request_id').isMongoId().withMessage('requestId must be a mongoId'),
+  param('staff_id').notEmpty().withMessage('staffId is required'),
+  param('staff_id').isMongoId().withMessage('staffId must be a mongoId'),
 ];
 const login = () => [
   body('email').notEmpty().withMessage('email is required'),
@@ -61,6 +69,11 @@ const register = () => [
   body('phone_number').isMobilePhone().withMessage('phoneNumber is invalid'),
 ];
 module.exports = {
-  requestValidation: { createOnerequest, getListApplyStaff },
+  requestValidation: {
+    createOnerequest,
+    getListApplyStaff,
+    removeStaffFromRequestListStaff,
+    acceptStaffFromRequestListStaff,
+  },
   authValidation: { login, register },
 };
