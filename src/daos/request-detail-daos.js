@@ -14,6 +14,10 @@ const requestDetailDaos = {
     const response = await baseDaos.updateOne(RequestDetailModel, condition, data);
     return response;
   },
+  findWithCondition: async (condition) => {
+    const response = await RequestDetailModel.find(condition);
+    return response;
+  },
 };
 
 module.exports = requestDetailDaos;

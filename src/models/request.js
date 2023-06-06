@@ -26,5 +26,4 @@ const Request = Schema(
     versionKey: false,
   },
 );
-
 module.exports = model('Request', Request);

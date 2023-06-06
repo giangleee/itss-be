@@ -10,6 +10,14 @@ const requestDaos = {
     const response = await baseDaos.findById(RequestModel, id);
     return response;
   },
+  findWidthCondition: async (condition) => {
+    const response = await RequestModel.find(condition);
+    return response;
+  },
+  findOne: async (condition) => {
+    const response = await baseDaos.findOne(RequestModel, condition);
+    return response;
+  },
 };
 
 module.exports = requestDaos;

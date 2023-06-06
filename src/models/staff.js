@@ -1,9 +1,9 @@
 const { Schema, model } = require('mongoose');
 
 const GENDER = {
-  MAN: 0,
-  WOMAN: 1,
-  NONE_OF_THEM_ABOVE: 2,
+  MAN: 'Male',
+  WOMAN: 'Female',
+  NONE_OF_THEM_ABOVE: 'Other',
 };
 
 const Staff = Schema(
