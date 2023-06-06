@@ -2,7 +2,7 @@ const { RequestDaos, RequestDetailDaos, RequestListStaffDaos, StaffDaos } = requ
 const httpCode = require('../utils/http-codes');
 
 /**
- * @typedef {'createOne'|'getListApplyStaff'|'removeStaffFromRequestListStaff'|'acceptStaffFromRequestListStaff'} RequestController
+ * @typedef {'createOne'|'getListApplyStaff'|'removeStaffFromRequestListStaff'|'acceptStaffFromRequestListStaff'|getListProgessRequest} RequestController
  * @type {Record<RequestController, import('express').RequestHandler>}
  */
 const request = {
@@ -32,7 +32,7 @@ const request = {
     const { tab, size } = req.query;
     const { request_id } = req.params;
     const requestListStaff = await RequestListStaffDaos.findOne({ req_id: request_id });
-
+    if (!requestListStaff) throw 'Request not found';
     const staff_ids = requestListStaff.staff_ids;
     const staffs = await StaffDaos.findWithCondition(staff_ids, tab, size);
 
@@ -66,6 +66,22 @@ const request = {
     const request_detail_id = request.request_detail_id;
     await RequestDetailDaos.updateOne({ _id: request_detail_id }, { staff_id, status: 1 });
     res.status(httpCode.SUCCESS).json({ message: 'Accept staff successfully' });
+  },
+  getListProgessRequest: async (req, res, next) => {
+    const { tab, size } = req.query;
+    const results = await RequestDetailDaos.findWithCondition({ status: 1 });
+    const requestDetails = results.map((result) => result.toJSON());
+    const requests = await Promise.all(
+      requestDetails.map(async (requestDetail) => {
+        const request = await RequestDaos.findOne({
+          request_detail_id: requestDetail._id,
+        });
+        return { ...request.toJSON(), request_detail: requestDetail };
+      }),
+    );
+    res
+      .status(httpCode.SUCCESS)
+      .json({ message: 'Get list progess request successfully', data: requests });
   },
 };
 module.exports = request;

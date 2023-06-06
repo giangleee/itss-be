@@ -2,6 +2,11 @@ const httpCodes = require('../utils/http-codes');
 const customApiMessage = require('../errors/CustomApiMessage');
 
 const baseDaos = {
+  //add genaric type T in insertData function
+  /**
+   * @template {import('mongoose').Model} T
+   * @param {T} model
+   */
   insertData: async (model, data) => {
     try {
       const insertResponse = await model.create(data);

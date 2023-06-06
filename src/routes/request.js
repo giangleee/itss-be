@@ -30,6 +30,7 @@ const initRouter = (router) => {
       validate(removeStaffFromRequestListStaff()),
       requestController.removeStaffFromRequestListStaff,
     );
+  router.get('/list-progess', requestController.getListProgessRequest);
   return router;
 };
 

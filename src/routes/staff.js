@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { staffController } = require('../controllers');
 
 /**
  * This function is used to initialize all routes
@@ -7,6 +8,7 @@ const router = express.Router();
  * @returns {express.Router}
  */
 const initRouter = (router) => {
+  router.get('/list-staff', staffController.getListStaffs);
   return router;
 };
 
