@@ -1,5 +1,6 @@
 const { RequestDaos, RequestDetailDaos, RequestListStaffDaos, StaffDaos } = require('../daos');
 const httpCode = require('../utils/http-codes');
+const asyncMiddleware = require('../middlewares/async-middleware')
 
 /**
  * @typedef {'getListStaffs'} RequestController
@@ -19,4 +20,6 @@ const staff = {
     }
   },
 };
-module.exports = staff;
+module.exports = {
+  getListStaffs: asyncMiddleware(staff.getListStaffs)
+};
