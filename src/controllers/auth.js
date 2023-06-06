@@ -1,6 +1,6 @@
 const { UserDaos } = require('../daos');
 const { UserService } = require('../services');
-const httpCode = require('../utils/http-codes')
+const httpCode = require('../utils/http-codes');
 
 /**
  * @typedef {'login'|'register'} AuthController
@@ -12,7 +12,7 @@ const auth = {
     const user = await UserDaos.findOne({ email });
     if (!user) throw 'User not found';
 
-    const isMatch = await UserService.comparePassword(password, user.password);
+    const isMatch = UserService.comparePassword(password, user.password);
     if (!isMatch) throw 'Wrong password';
 
     const token = UserService.genToken(user._id);

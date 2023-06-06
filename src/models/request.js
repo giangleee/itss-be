@@ -10,7 +10,7 @@ const JOB_TYPE = {
 const Request = Schema(
   {
     request_detail_id: {
-      type: ObjectId,
+      type: String,
       require: true,
       ref: 'RequestDetail',
     },

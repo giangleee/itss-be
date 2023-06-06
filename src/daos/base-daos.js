@@ -18,6 +18,22 @@ const baseDaos = {
       throw new customApiMessage(httpCodes.BAD_REQUEST, {}, 'Error');
     }
   },
+  findById: async (model, id) => {
+    try {
+      const findOneResponse = await model.findById(id);
+      return findOneResponse;
+    } catch (error) {
+      throw new customApiMessage(httpCodes.BAD_REQUEST, {}, 'Error');
+    }
+  },
+  updateOne: async (model, condition, data) => {
+    try {
+      const findOneResponse = await model.updateOne(condition, data);
+      return findOneResponse;
+    } catch (error) {
+      throw new customApiMessage(httpCodes.BAD_REQUEST, {}, 'Error');
+    }
+  },
 };
 
 module.exports = baseDaos;
