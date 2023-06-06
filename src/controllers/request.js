@@ -1,5 +1,6 @@
 const { RequestDaos, RequestDetailDaos, RequestListStaffDaos, StaffDaos } = require('../daos');
 const httpCode = require('../utils/http-codes');
+const asyncMiddleware = require('../middlewares/async-middleware')
 
 /**
  * @typedef {'createOne'|'getListApplyStaff'|'removeStaffFromRequestListStaff'|'acceptStaffFromRequestListStaff'|getListProgessRequest} RequestController
@@ -84,7 +85,13 @@ const request = {
       .json({ message: 'Get list progess request successfully', data: requests });
   },
 };
-module.exports = request;
+module.exports = {
+  createOne: asyncMiddleware(request.createOne),
+  getListApplyStaff: asyncMiddleware(request.getListApplyStaff),
+  removeStaffFromRequestListStaff: asyncMiddleware(request.removeStaffFromRequestListStaff),
+  acceptStaffFromRequestListStaff: asyncMiddleware(request.acceptStaffFromRequestListStaff),
+  getListProgessRequest: asyncMiddleware(request.getListProgessRequest),
+};
 /**
  * @typedef {{job:'sitters'| 'cooker'| 'both';request_detail:{work_time:string;salary:number;policy:string;other_note?:string}}} Body
  */

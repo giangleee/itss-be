@@ -1,6 +1,7 @@
 const { UserDaos } = require('../daos');
 const { UserService } = require('../services');
 const httpCode = require('../utils/http-codes');
+const asyncMiddleware = require('../middlewares/async-middleware')
 
 /**
  * @typedef {'login'|'register'} AuthController
@@ -31,4 +32,7 @@ const auth = {
   },
 };
 
-module.exports = auth;
+module.exports = {
+  login: asyncMiddleware(auth.login),
+  register: asyncMiddleware(auth.register),
+};
