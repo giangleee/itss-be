@@ -1,4 +1,6 @@
 const validator = require('express-validator');
+const httpCode = require('../utils/http-codes')
+
 /**
  * @param {validator.ValidationChain[]} validations
  * @returns {import('express').RequestHandler}
@@ -9,7 +11,7 @@ const validate = (validations) => async (req, res, next) => {
   if (errors.isEmpty()) {
     return next();
   }
-  return res.status(400).json({
+  return res.status(httpCode.BAD_REQUEST).json({
     message: 'Validation errors',
     errors: errors.array(),
   });

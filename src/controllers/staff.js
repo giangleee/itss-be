@@ -1,6 +1,6 @@
-const { RequestDaos, RequestDetailDaos, RequestListStaffDaos, StaffDaos } = require('../daos');
-const httpCode = require('../utils/http-codes');
-const asyncMiddleware = require('../middlewares/async-middleware')
+const { StaffDaos } = require('../daos');
+const asyncMiddleware = require('../middleware/async-middleware');
+const convertResponse = require('../utils/response-helper')
 
 /**
  * @typedef {'getListStaffs'} RequestController
@@ -8,18 +8,15 @@ const asyncMiddleware = require('../middlewares/async-middleware')
  */
 const staff = {
   getListStaffs: async (req, res, next) => {
-    try {
-      const { tab, size, ...filters } = req.query;
-      Object.keys(filters).forEach((key) => {
-        if (!['age', 'rating_avg', 'gender'].includes(key)) delete filters[key];
-      });
-      const staffs = await StaffDaos.getListStaffs(tab, size, filters);
-      res.status(httpCode.SUCCESS).json({ message: 'Get list staffs successfully', data: staffs });
-    } catch (error) {
-      next(error);
-    }
+    const { tab, size, ...filters } = req.query;
+    Object.keys(filters).forEach((key) => {
+      if (!['age', 'rating_avg', 'gender'].includes(key)) delete filters[key];
+    });
+    const staffs = await StaffDaos.getListStaffs(tab, size, filters);
+
+    convertResponse(null, 'Get list staffs successfully', staff, res)
   },
 };
 module.exports = {
-  getListStaffs: asyncMiddleware(staff.getListStaffs)
+  getListStaffs: asyncMiddleware(staff.getListStaffs),
 };

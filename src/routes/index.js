@@ -3,7 +3,7 @@ const router = express.Router();
 const requestRouter = require('./request');
 const staffRouter = require('./staff');
 const authRouter = require('./auth');
-const { errorHandler } = require('../middlewares');
+const { errorHandler } = require('../middleware');
 
 /**
  * This function is used to initialize all routes

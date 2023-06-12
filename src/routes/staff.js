@@ -9,6 +9,7 @@ const { staffController } = require('../controllers');
  */
 const initRouter = (router) => {
   router.get('/list-staff', staffController.getListStaffs);
+  
   return router;
 };
 
