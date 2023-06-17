@@ -3,15 +3,15 @@ const mongoose = require('mongoose');
 const Ratting = mongoose.Schema(
   {
     staff_id: {
-      type: String,
+      type: mongoose.Types.ObjectId,
       ref: 'Staff',
     },
     user_id: {
-      type: String,
+      type: mongoose.Types.ObjectId,
       ref: 'User',
     },
-    request_detail_id: {
-      type: String,
+    request_id: {
+      type: mongoose.Types.ObjectId,
       ref: 'RequestDetail',
     },
     ratting: {

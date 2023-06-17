@@ -54,6 +54,18 @@ const User = Schema(
       require: true,
       unique: true,
     },
+    city: {
+      type: String,
+      require: true,
+    },
+    district: {
+      type: String,
+      require: true,
+    },
+    address: {
+      type: String,
+      require: true,
+    },
     role_id: {
       type: ObjectId,
       ref: 'Role',

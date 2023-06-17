@@ -23,18 +23,18 @@ const initRouter = (router) => {
     validate(acceptStaffFromRequestListStaff()),
     requestController.acceptStaffFromRequestListStaff,
   );
-  router
-    .get(
-      '/list-apply-staff/:request_id',
-      validate(getListApplyStaff()),
-      requestController.getListApplyStaff,
-    )
-    .patch(
-      validate(removeStaffFromRequestListStaff()),
-      requestController.removeStaffFromRequestListStaff,
-    );
+  router.get(
+    '/list-apply-staff/:request_id',
+    validate(getListApplyStaff()),
+    requestController.getListApplyStaff,
+  );
+  router.patch(
+    '/list-apply-staff/:request_id',
+    validate(removeStaffFromRequestListStaff()),
+    requestController.removeStaffFromRequestListStaff,
+  );
   router.get('/list-progess', requestController.getListProgessRequest);
-  
+
   return router;
 };
 

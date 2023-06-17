@@ -1,10 +1,5 @@
 const { Schema, model } = require('mongoose');
-
-const GENDER = {
-  MAN: 'Male',
-  WOMAN: 'Female',
-  NONE_OF_THEM_ABOVE: 'Other',
-};
+const { GENDER, JOB_TYPE } = require('../utils/constants');
 
 const Staff = Schema(
   {
@@ -58,6 +53,23 @@ const Staff = Schema(
     skill: {
       type: String,
       require: true,
+    },
+    city: {
+      type: String,
+      require: true,
+    },
+    district: {
+      type: String,
+      require: true,
+    },
+    address: {
+      type: String,
+      require: true,
+    },
+    job: {
+      type: String,
+      require: true,
+      enum: Object.values(JOB_TYPE),
     },
   },
   {
