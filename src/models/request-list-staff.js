@@ -3,16 +3,16 @@ const mongoose = require('mongoose');
 const RequestListStaff = mongoose.Schema(
   {
     request_id: {
-      type: String,
+      type: mongoose.Types.ObjectId,
       ref: 'Request',
     },
     user_id: {
-      type: String,
+      type: mongoose.Types.ObjectId,
       ref: 'User',
     },
     staff_ids: [
       {
-        type: String,
+        type: mongoose.Types.ObjectId,
         ref: 'User',
       },
     ],

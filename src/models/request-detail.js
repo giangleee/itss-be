@@ -10,11 +10,11 @@ const STATUS_CODE = {
 const RequestDetail = mongoose.Schema(
   {
     staff_id: {
-      type: String,
+      type: mongoose.Types.ObjectId,
       ref: 'Staff',
     },
     user_id: {
-      type: String,
+      type: mongoose.Types.ObjectId,
       ref: 'User',
     },
     work_time: {
