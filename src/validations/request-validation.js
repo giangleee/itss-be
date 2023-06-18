@@ -36,5 +36,8 @@ const requestValidation = {
     param('staff_id').notEmpty().withMessage('staffId is required'),
     param('staff_id').isMongoId().withMessage('staffId must be a mongoId'),
   ],
+  getRequestBaseUserInfo: () => [
+    query('user_id').isString().withMessage('Invalid query data'),
+  ]
 };
 module.exports = requestValidation

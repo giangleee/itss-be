@@ -2,6 +2,7 @@ const { RequestDaos, RequestDetailDaos, RequestListStaffDaos, StaffDaos } = requ
 const httpCode = require('../utils/http-codes');
 const asyncMiddleware = require('../middleware/async-middleware')
 const convertResponse = require('../utils/response-helper')
+const {requestService} = require('../services')
 
 /**
  * @typedef {'createOne'|'getListApplyStaff'|'removeStaffFromRequestListStaff'|'acceptStaffFromRequestListStaff'|getListProgessRequest} RequestController
@@ -80,6 +81,13 @@ const request = {
 
     convertResponse(null, 'Get list progress request successfully', requests, res)
   },
+  getListRequestBaseUser: async (request, response) => {
+    const {user_id} = request.query
+    await requestService.checkValidUserId(user_id)
+    const result = await requestService.getRequestByUserId(user_id)
+
+    convertResponse(null, 'Get list user request successfully', result, response)
+  }
 };
 module.exports = {
   createOne: asyncMiddleware(request.createOne),
@@ -87,6 +95,7 @@ module.exports = {
   removeStaffFromRequestListStaff: asyncMiddleware(request.removeStaffFromRequestListStaff),
   acceptStaffFromRequestListStaff: asyncMiddleware(request.acceptStaffFromRequestListStaff),
   getListProgessRequest: asyncMiddleware(request.getListProgessRequest),
+  getListRequestBaseUser: asyncMiddleware(request.getListRequestBaseUser),
 };
 /**
  * @typedef {{job:'sitters'| 'cooker'| 'both';request_detail:{work_time:string;salary:number;policy:string;other_note?:string}}} Body
