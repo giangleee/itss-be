@@ -71,6 +71,13 @@ const Staff = Schema(
       require: true,
       enum: Object.values(JOB_TYPE),
     },
+    intro: {
+      type: String,
+    },
+    email: {
+      type: String,
+      require: true,
+    }
   },
   {
     timestamps: true,
