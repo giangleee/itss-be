@@ -64,6 +64,10 @@ const rattingDaos = {
     }
     throw new customApiMessage(httpCode.INTERNAL_SERVER_ERROR, {}, 'Invalid id');
   },
+  insertRatting: async (payload) => {
+    const result = await baseDaos.insertData(RattingModel, payload);
+    return result;
+  },
 };
 
 module.exports = rattingDaos;

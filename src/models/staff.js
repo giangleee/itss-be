@@ -21,8 +21,6 @@ const Staff = Schema(
     },
     avatar: {
       type: String,
-      require: true,
-      default: 'img_default',
     },
     address: {
       type: String,
