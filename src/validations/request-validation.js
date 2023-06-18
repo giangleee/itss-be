@@ -38,6 +38,9 @@ const requestValidation = {
   ],
   getRequestBaseUserInfo: () => [
     query('user_id').isString().withMessage('Invalid query data'),
+  ],
+  requestDataValidate: () => [
+    query('request_id').isString().withMessage('Invalid query data'),
   ]
 };
 module.exports = requestValidation

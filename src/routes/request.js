@@ -9,6 +9,7 @@ const {
     removeStaffFromRequestListStaff,
     acceptStaffFromRequestListStaff,
     getRequestBaseUserInfo,
+    requestDataValidate,
   },
 } = require('../validations');
 
@@ -35,7 +36,8 @@ const initRouter = (router) => {
     requestController.removeStaffFromRequestListStaff,
   );
   router.get('/list-progess', requestController.getListProgessRequest);
-  router.get('/', validate(getRequestBaseUserInfo()), requestController.getListRequestBaseUser);
+  router.get('/user', validate(getRequestBaseUserInfo()), requestController.getListRequestBaseUser);
+  router.get('/', validate(requestDataValidate()), requestController.getRequestDetail);
 
   return router;
 };

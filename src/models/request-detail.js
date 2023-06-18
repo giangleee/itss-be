@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const STATUS_CODE = {
-  IS_PROGRESS: 0,
+  IS_ON_HOLD: 0,
   IS_RUNNING: 1,
   IS_COMPLETED: 2,
   IS_EXPIRED: 3,
@@ -38,7 +38,7 @@ const RequestDetail = mongoose.Schema(
       type: Number,
       require: true,
       enum: Object.values(STATUS_CODE),
-      default: STATUS_CODE.IS_PROGRESS,
+      default: STATUS_CODE.IS_ON_HOLD,
     },
   },
   {
