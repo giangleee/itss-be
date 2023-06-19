@@ -2,6 +2,8 @@ const asyncMiddleware = require('../middleware/async-middleware');
 const httpCode = require('../utils/http-codes');
 const convertResponse = require('../utils/response-helper');
 const { ratingService } = require('../services');
+const {RequestDaos, RequestDetailDaos} = require('../daos')
+const constants = require('../utils/constants')
 
 const createRatting = async (request, response) => {
   const {
@@ -20,6 +22,9 @@ const createRatting = async (request, response) => {
     ratting,
     comment,
   });
+  const requestDetail = await RequestDaos.findById(request_id)
+  const requestDetailId = requestDetail.request_detail_id
+  await RequestDetailDaos.updateOne({_id: requestDetailId},  { $set: { status: constants.STATUS_CODE.IS_COMPLETED } });
 
   convertResponse(httpCode.CREATED_SUCCESS, 'Create review successfully', result, response);
 };

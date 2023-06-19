@@ -10,7 +10,15 @@ const GENDER = {
   NONE_OF_THEM_ABOVE: 'Other',
 };
 
+const STATUS_CODE = {
+  IS_ON_HOLD: 0,
+  IS_RUNNING: 1,
+  IS_COMPLETED: 2,
+  IS_EXPIRED: 3,
+};
+
 module.exports = {
   JOB_TYPE,
-  GENDER
+  GENDER,
+  STATUS_CODE
 }
