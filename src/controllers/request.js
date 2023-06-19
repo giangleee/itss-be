@@ -32,7 +32,7 @@ const request = {
   getListApplyStaff: async (req, res) => {
     const { tab, size } = req.query;
     const { request_id } = req.params;
-    const requestListStaff = await RequestListStaffDaos.findOne({ req_id: request_id });
+    const requestListStaff = await RequestListStaffDaos.findOne({ request_id: request_id });
     if (!requestListStaff) throw 'Request not found';
     const staff_ids = requestListStaff.staff_ids;
     const staffs = await StaffDaos.findWithCondition(staff_ids, tab, size);
