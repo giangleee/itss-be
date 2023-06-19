@@ -42,16 +42,16 @@ const request = {
   removeStaffFromRequestListStaff: async (req, res) => {
     const { staffs } = req.body;
     const { request_id } = req.params;
-    const requestListStaff = await RequestListStaffDaos.findOne({ req_id: request_id });
+    const requestListStaff = await RequestListStaffDaos.findOne({ request_id: request_id });
     const staff_ids = requestListStaff.staff_ids;
     const newStaffIds = staff_ids.filter((staff_id) => !staffs.includes(staff_id));
-    await RequestListStaffDaos.updateOne({ req_id: request_id }, { staff_ids: newStaffIds });
+    await RequestListStaffDaos.updateOne({ request_id: request_id }, { staff_ids: newStaffIds });
 
     convertResponse(null, 'Remove staff from request list staff successfully', null, res);
   },
   acceptStaffFromRequestListStaff: async (req, res) => {
     const { request_id, staff_id } = req.params;
-    const requestListStaff = await RequestListStaffDaos.findOne({ req_id: request_id });
+    const requestListStaff = await RequestListStaffDaos.findOne({ request_id: request_id });
     const staff_ids = requestListStaff.staff_ids.filter((id) => id !== staff_id);
     if (staff_ids.length === requestListStaff.staff_ids.length) {
       res
@@ -59,7 +59,7 @@ const request = {
         .json({ message: 'Staff is not exist in request list staff' });
       return;
     }
-    await RequestListStaffDaos.updateOne({ req_id: request_id }, { staff_ids });
+    await RequestListStaffDaos.updateOne({ request_id: request_id }, { staff_ids });
     const request = await RequestDaos.findById(request_id);
     const request_detail_id = request.request_detail_id;
     await RequestDetailDaos.updateOne({ _id: request_detail_id }, { staff_id, status: 1 });
