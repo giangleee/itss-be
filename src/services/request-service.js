@@ -18,7 +18,7 @@ const requestService = {
       {
         $lookup: {
           from: 'staffs',
-          localField: 'staff_id',
+          localField: 'staff_ids',
           foreignField: '_id',
           as: 'staff_detail',
         },
