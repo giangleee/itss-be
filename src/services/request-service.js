@@ -9,6 +9,7 @@ const requestService = {
       throw new CustomApiMessage(httpCode.BAD_REQUEST, {}, 'Invalid id data');
   },
   getRequestByUserId: async (user_id) => {
+    console.log("🚀 ~ file: request-service.js:12 ~ getRequestByUserId: ~ user_id:", user_id)
     const result = await RequestListStaffModel.aggregate([
       {
         $match: {
@@ -22,9 +23,6 @@ const requestService = {
           foreignField: '_id',
           as: 'staff_detail',
         },
-      },
-      {
-        $unwind: '$staff_detail',
       },
       {
         $lookup: {
@@ -56,6 +54,7 @@ const requestService = {
         },
       },
     ]);
+    console.log("🚀 ~ file: request-service.js:59 ~ getRequestByUserId: ~ result:", result)
     if (result.length === 0)
         throw new CustomApiMessage(httpCode.BAD_REQUEST, {}, 'Can not find')
     return result
