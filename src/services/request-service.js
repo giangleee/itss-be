@@ -78,6 +78,28 @@ const requestService = {
         $unwind: '$request_detail'
       },
       {
+        $lookup: {
+          from: 'staffs',
+          localField: 'request_detail.staff_id',
+          foreignField: '_id',
+          as: 'request_detail.staff_detail',
+        },
+      },
+      {
+        $unwind: '$request_detail.staff_detail',
+      },
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'request_detail.user_id',
+          foreignField: '_id',
+          as: 'request_detail.user_detail',
+        },
+      },
+      {
+        $unwind: '$request_detail.user_detail',
+      },
+      {
         $project: {
           _id: 1,
           request_detail: 1,
