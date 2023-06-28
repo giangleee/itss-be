@@ -44,7 +44,7 @@ const request = {
     const { request_id } = req.params;
     const requestListStaff = await RequestListStaffDaos.findOne({ request_id: request_id });
     const staff_ids = requestListStaff.staff_ids;
-    const newStaffIds = staff_ids.filter((staff_id) => !staffs.includes(staff_id));
+    const newStaffIds = staff_ids.filter((staff_id) => !staffs.includes(staff_id.toString()));
     await RequestListStaffDaos.updateOne({ request_id: request_id }, { staff_ids: newStaffIds });
 
     convertResponse(null, 'Remove staff from request list staff successfully', null, res);
@@ -94,7 +94,7 @@ const request = {
     const result = await requestService.getRequestDetail(request_id);
 
     convertResponse(null, 'Get request detail successfully', result, response);
-  }
+  },
 };
 module.exports = {
   createOne: asyncMiddleware(request.createOne),
@@ -103,7 +103,7 @@ module.exports = {
   acceptStaffFromRequestListStaff: asyncMiddleware(request.acceptStaffFromRequestListStaff),
   getListProgessRequest: asyncMiddleware(request.getListProgessRequest),
   getListRequestBaseUser: asyncMiddleware(request.getListRequestBaseUser),
-  getRequestDetail: asyncMiddleware(request.getRequestDetail)
+  getRequestDetail: asyncMiddleware(request.getRequestDetail),
 };
 /**
  * @typedef {{job:'sitters'| 'cooker'| 'both';request_detail:{work_time:string;salary:number;policy:string;other_note?:string}}} Body
