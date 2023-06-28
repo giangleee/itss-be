@@ -26,11 +26,8 @@ const initRouter = (router) => {
     requestController.acceptStaffFromRequestListStaff,
   );
   router
-    .get(
-      '/list-apply-staff/:request_id',
-      validate(getListApplyStaff()),
-      requestController.getListApplyStaff,
-    )
+    .route('/list-apply-staff/:request_id')
+    .get(validate(getListApplyStaff()), requestController.getListApplyStaff)
     .patch(
       validate(removeStaffFromRequestListStaff()),
       requestController.removeStaffFromRequestListStaff,
