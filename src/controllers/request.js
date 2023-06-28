@@ -52,7 +52,7 @@ const request = {
   acceptStaffFromRequestListStaff: async (req, res) => {
     const { request_id, staff_id } = req.params;
     const requestListStaff = await RequestListStaffDaos.findOne({ request_id: request_id });
-    const staff_ids = requestListStaff.staff_ids.filter((id) => id !== staff_id);
+    const staff_ids = requestListStaff.staff_ids.filter((id) => id.toString() !== staff_id);
     if (staff_ids.length === requestListStaff.staff_ids.length) {
       res
         .status(httpCode.BAD_REQUEST)
