@@ -1,16 +1,11 @@
 const { Schema, model } = require('mongoose');
 const { ObjectId } = require('mongoose').Types;
-
-const JOB_TYPE = {
-  SITTER: 0,
-  COOKER: 1,
-  BOTH: 2,
-};
+const { JOB_TYPE } = require('../utils/constants');
 
 const Request = Schema(
   {
     request_detail_id: {
-      type: String,
+      type: ObjectId,
       require: true,
       ref: 'RequestDetail',
     },

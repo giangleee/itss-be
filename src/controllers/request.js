@@ -1,6 +1,8 @@
 const { RequestDaos, RequestDetailDaos, RequestListStaffDaos, StaffDaos } = require('../daos');
 const httpCode = require('../utils/http-codes');
-const asyncMiddleware = require('../middlewares/async-middleware')
+const asyncMiddleware = require('../middleware/async-middleware');
+const convertResponse = require('../utils/response-helper');
+const { requestService } = require('../services');
 
 /**
  * @typedef {'createOne'|'getListApplyStaff'|'removeStaffFromRequestListStaff'|'acceptStaffFromRequestListStaff'|getListProgessRequest} RequestController
@@ -11,7 +13,7 @@ const request = {
    * Create a new request
    * @param {import('express').Request<Record<string,string>,any,Body,any>} req
    */
-  createOne: async (req, res, next) => {
+  createOne: async (req, res) => {
     const { job, request_detail } = req.body;
     // TODO: Fake user id
     const user_id = '5f9d7b3b3f0b7c2b1c3b3b3b';
@@ -25,36 +27,31 @@ const request = {
       job: jobValue,
       request_detail_id: requestDetail._id,
     });
-    res
-      .status(httpCode.CREATED_SUCCESS)
-      .json({ message: 'Create request successfully', data: request });
+    convertResponse(httpCode.CREATED_SUCCESS, 'Create request successfully', request, res);
   },
-  getListApplyStaff: async (req, res, next) => {
+  getListApplyStaff: async (req, res) => {
     const { tab, size } = req.query;
     const { request_id } = req.params;
-    const requestListStaff = await RequestListStaffDaos.findOne({ req_id: request_id });
+    const requestListStaff = await RequestListStaffDaos.findOne({ request_id: request_id });
     if (!requestListStaff) throw 'Request not found';
     const staff_ids = requestListStaff.staff_ids;
     const staffs = await StaffDaos.findWithCondition(staff_ids, tab, size);
 
-    res
-      .status(httpCode.SUCCESS)
-      .json({ message: 'Get list apply staff successfully', data: staffs });
+    convertResponse(null, 'Get list apply staff successfully', staffs, res);
   },
-  removeStaffFromRequestListStaff: async (req, res, next) => {
+  removeStaffFromRequestListStaff: async (req, res) => {
     const { staffs } = req.body;
     const { request_id } = req.params;
-    const requestListStaff = await RequestListStaffDaos.findOne({ req_id: request_id });
+    const requestListStaff = await RequestListStaffDaos.findOne({ request_id: request_id });
     const staff_ids = requestListStaff.staff_ids;
     const newStaffIds = staff_ids.filter((staff_id) => !staffs.includes(staff_id));
-    await RequestListStaffDaos.updateOne({ req_id: request_id }, { staff_ids: newStaffIds });
-    res
-      .status(httpCode.SUCCESS)
-      .json({ message: 'Remove staff from request list staff successfully' });
+    await RequestListStaffDaos.updateOne({ request_id: request_id }, { staff_ids: newStaffIds });
+
+    convertResponse(null, 'Remove staff from request list staff successfully', null, res);
   },
-  acceptStaffFromRequestListStaff: async (req, res, next) => {
+  acceptStaffFromRequestListStaff: async (req, res) => {
     const { request_id, staff_id } = req.params;
-    const requestListStaff = await RequestListStaffDaos.findOne({ req_id: request_id });
+    const requestListStaff = await RequestListStaffDaos.findOne({ request_id: request_id });
     const staff_ids = requestListStaff.staff_ids.filter((id) => id.toString() !== staff_id);
     if (staff_ids.length === requestListStaff.staff_ids.length) {
       res
@@ -62,13 +59,14 @@ const request = {
         .json({ message: 'Staff is not exist in request list staff' });
       return;
     }
-    await RequestListStaffDaos.updateOne({ req_id: request_id }, { staff_ids });
+    await RequestListStaffDaos.updateOne({ request_id: request_id }, { staff_ids });
     const request = await RequestDaos.findById(request_id);
     const request_detail_id = request.request_detail_id;
     await RequestDetailDaos.updateOne({ _id: request_detail_id }, { staff_id, status: 1 });
-    res.status(httpCode.SUCCESS).json({ message: 'Accept staff successfully' });
+
+    convertResponse(null, 'Accept staff successfully', null, res);
   },
-  getListProgessRequest: async (req, res, next) => {
+  getListProgessRequest: async (req, res) => {
     const { tab, size } = req.query;
     const results = await RequestDetailDaos.findWithCondition({ status: 1 });
     const requestDetails = results.map((result) => result.toJSON());
@@ -80,10 +78,23 @@ const request = {
         return { ...request.toJSON(), request_detail: requestDetail };
       }),
     );
-    res
-      .status(httpCode.SUCCESS)
-      .json({ message: 'Get list progess request successfully', data: requests });
+
+    convertResponse(null, 'Get list progress request successfully', requests, res);
   },
+  getListRequestBaseUser: async (request, response) => {
+    const { user_id } = request.query;
+    await requestService.checkValidObjectId(user_id);
+    const result = await requestService.getRequestByUserId(user_id);
+
+    convertResponse(null, 'Get list user request successfully', result, response);
+  },
+  getRequestDetail: async (request, response) => {
+    const { request_id } = request.query;
+    await requestService.checkValidObjectId(request_id);
+    const result = await requestService.getRequestDetail(request_id);
+
+    convertResponse(null, 'Get request detail successfully', result, response);
+  }
 };
 module.exports = {
   createOne: asyncMiddleware(request.createOne),
@@ -91,6 +102,8 @@ module.exports = {
   removeStaffFromRequestListStaff: asyncMiddleware(request.removeStaffFromRequestListStaff),
   acceptStaffFromRequestListStaff: asyncMiddleware(request.acceptStaffFromRequestListStaff),
   getListProgessRequest: asyncMiddleware(request.getListProgessRequest),
+  getListRequestBaseUser: asyncMiddleware(request.getListRequestBaseUser),
+  getRequestDetail: asyncMiddleware(request.getRequestDetail)
 };
 /**
  * @typedef {{job:'sitters'| 'cooker'| 'both';request_detail:{work_time:string;salary:number;policy:string;other_note?:string}}} Body

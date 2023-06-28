@@ -31,6 +31,14 @@ const baseDaos = {
       throw new customApiMessage(httpCodes.BAD_REQUEST, {}, 'Error');
     }
   },
+  findByCondition: async (model, condition) => {
+    try {
+      const findOneResponse = await model.find(condition);
+      return findOneResponse;
+    } catch (error) {
+      throw new customApiMessage(httpCodes.BAD_REQUEST, {}, 'Error');
+    }
+  },
   updateOne: async (model, condition, data) => {
     try {
       const findOneResponse = await model.updateOne(condition, data);

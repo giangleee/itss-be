@@ -1,20 +1,14 @@
 const mongoose = require('mongoose');
-
-const STATUS_CODE = {
-  IS_PROGRESS: 0,
-  IS_RUNNING: 1,
-  IS_COMPLETED: 2,
-  IS_EXPIRED: 3,
-};
+const constants = require('../utils/constants')
 
 const RequestDetail = mongoose.Schema(
   {
     staff_id: {
-      type: String,
+      type: mongoose.Types.ObjectId,
       ref: 'Staff',
     },
     user_id: {
-      type: String,
+      type: mongoose.Types.ObjectId,
       ref: 'User',
     },
     work_time: {
@@ -37,8 +31,8 @@ const RequestDetail = mongoose.Schema(
     status: {
       type: Number,
       require: true,
-      enum: Object.values(STATUS_CODE),
-      default: STATUS_CODE.IS_PROGRESS,
+      enum: Object.values(constants.STATUS_CODE),
+      default: constants.STATUS_CODE.IS_ON_HOLD,
     },
   },
   {
