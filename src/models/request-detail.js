@@ -23,10 +23,6 @@ const RequestDetail = mongoose.Schema(
       type: String,
       require: true,
     },
-    term: {
-      type: String,
-      require: true,
-    },
     other_note: String,
     status: {
       type: Number,

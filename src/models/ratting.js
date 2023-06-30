@@ -12,7 +12,7 @@ const Ratting = mongoose.Schema(
     },
     request_id: {
       type: mongoose.Types.ObjectId,
-      ref: 'RequestDetail',
+      ref: 'Request',
     },
     ratting: {
       type: Number,
