@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const auth = {
   veryfiToken: (req, res, next) => {
     try {
-      const token = req.headers.authorization.split(' ')[1];
+      const token = req.headers.authorization?.split(' ')[1];
       if (!token) throw 'Token not found';
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       req.payload = decoded;

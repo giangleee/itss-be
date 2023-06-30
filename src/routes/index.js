@@ -3,6 +3,7 @@ const router = express.Router();
 const requestRouter = require('./request');
 const staffRouter = require('./staff');
 const authRouter = require('./auth');
+const meRouter = require('./me');
 const { errorHandler } = require('../middleware');
 const rattingRouter = require('./ratting')
 
@@ -16,6 +17,7 @@ const initRouter = (router) => {
   router.use('/staff', staffRouter);
   router.use('/auth', authRouter);
   router.use('/ratting', rattingRouter)
+  router.use('/me', meRouter);
   router.use(errorHandler);
   return router;
 };
