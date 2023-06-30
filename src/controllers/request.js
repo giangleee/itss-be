@@ -3,30 +3,27 @@ const httpCode = require('../utils/http-codes');
 const asyncMiddleware = require('../middleware/async-middleware');
 const convertResponse = require('../utils/response-helper');
 const { requestService } = require('../services');
+const { STATUS_CODE } = require('../utils/constants');
 
-/**
- * @typedef {'createOne'|'getListApplyStaff'|'removeStaffFromRequestListStaff'|'acceptStaffFromRequestListStaff'|getListProgessRequest} RequestController
- * @type {Record<RequestController, import('express').RequestHandler>}
- */
 const request = {
-  /**
-   * Create a new request
-   * @param {import('express').Request<Record<string,string>,any,Body,any>} req
-   */
   createOne: async (req, res) => {
-    const { job, request_detail } = req.body;
-    // TODO: Fake user id
+    const { job_type, request_detail } = req.body;
+    // // TODO: Fake user id
     const user_id = '5f9d7b3b3f0b7c2b1c3b3b3b';
+    const staff_id = '5f9d7b3b3f0b7c2b1c3b3b3b';
+    
     const requestDetail = await RequestDetailDaos.createRequestDetail({
       ...request_detail,
       user_id,
+      staff_id,
+      status: STATUS_CODE.IS_ON_HOLD,
     });
 
-    const jobValue = job === 'sitters' ? 0 : job === 'cooker' ? 1 : 2;
     const request = await RequestDaos.createRequest({
-      job: jobValue,
+      job: job_type,
       request_detail_id: requestDetail._id,
     });
+
     convertResponse(httpCode.CREATED_SUCCESS, 'Create request successfully', request, res);
   },
   getListApplyStaff: async (req, res) => {
@@ -105,6 +102,3 @@ module.exports = {
   getListRequestBaseUser: asyncMiddleware(request.getListRequestBaseUser),
   getRequestDetail: asyncMiddleware(request.getRequestDetail),
 };
-/**
- * @typedef {{job:'sitters'| 'cooker'| 'both';request_detail:{work_time:string;salary:number;policy:string;other_note?:string}}} Body
- */
