@@ -37,7 +37,7 @@ const getRatingDetail = async (request, response) => {
   const { staff_id } = request.query;
   const result = await rattingService.getListRatingByStaff(staff_id)
 
-  convertResponse(httpCode.SUCCESS, 'Get rating detail successfully', result, response);
+  convertResponse(httpCode.SUCCESS, 'Get list ratting by staff successfully', result, response);
 };
 
 module.exports = {
