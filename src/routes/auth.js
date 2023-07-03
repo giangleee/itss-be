@@ -9,7 +9,7 @@ const {
 const initRouter = (router) => {
   router.post('/login', validate(login()), authController.login);
   router.post('/register', validate(register()), authController.register);
-  router.get('/', validate(getUserData()), authController.getUser);
+  router.get('/', authController.getUser);
   router.patch('/:_id', validate(updateUser()), authController.updateUser)
 
   return router;

@@ -23,7 +23,7 @@ const auth = {
   },
 
   getUser: async (request, response) => {
-    const { token } = request.query;
+    const token = request.headers.authorization?.split(' ')[1];
     const result = await UserService.decodeUserToken(token);
 
     convertResponse(httpCode.SUCCESS, 'Get user data successfully', result, response);

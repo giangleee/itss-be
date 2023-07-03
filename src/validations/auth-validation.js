@@ -12,8 +12,6 @@ const authValidation = {
 
   register: () => validateEmailAndPassword,
 
-  getUserData: () => [query('token', 'Token is required').notEmpty()],
-
   updateUser: () => [
     body('fullname', 'fullname is required').notEmpty().optional(),
     body('cccd', 'cccd is required').notEmpty().optional(),
