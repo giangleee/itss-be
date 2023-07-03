@@ -11,7 +11,7 @@ const auth = {
     const result = await UserService.getUserDataByCondition({email})
     await UserService.comparePassword(password, result.userData.password)
 
-    convertResponse(httpCode.SUCCESS, 'Login successfully', result, response);
+    convertResponse(httpCode.SUCCESS, 'Login successfully', result?.jsonToken, response);
   },
 
   register: async (request, response) => {
