@@ -1,8 +1,5 @@
 const jwt = require('jsonwebtoken');
-/**
- * @typedef {'veryfiToken'} AuthMiddleware
- * @type {Record<AuthMiddleware, import('express').RequestHandler>}
- */
+
 const auth = {
   veryfiToken: (req, res, next) => {
     try {

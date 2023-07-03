@@ -1,43 +1,34 @@
 const validator = require('express-validator');
-const { body } = validator;
-/**
- * Validation rules for request.createOne
- * @returns {Array<validator.ValidationChain>} Array of validation rules
- */
-const authValidation = {
-  login: () => [
-    body('email').notEmpty().withMessage('email is required'),
-    body('email').isEmail().withMessage('email is invalid'),
-    body('password').notEmpty().withMessage('password is required'),
-    body('password')
-      .isLength({ min: 6, max: 32 })
-      .withMessage('password must be between 6 and 32 characters'),
-  ],
+const { GENDER } = require('../utils/constants');
+const { body, query } = validator;
 
-  register: () => [
-    body('email').notEmpty().withMessage('email is required'),
-    body('email').isEmail().withMessage('email is invalid'),
-    body('password').notEmpty().withMessage('password is required'),
-    body('password')
-      .isLength({ min: 6, max: 32 })
-      .withMessage('password must be between 6 and 32 characters'),
-    body('fullname').notEmpty().withMessage('fullname is required'),
-    body('cccd').notEmpty().withMessage('cccd is required'),
-    body('gender').notEmpty().withMessage('gender is required'),
-    body('gender')
-      .isIn(['male', 'female', 'other'])
-      .withMessage("gender must be one of ['male', 'female', 'other']"),
-    body('date_of_birth').notEmpty().withMessage('dateOfBirth is required'),
-    body('date_of_birth').isDate().withMessage('dateOfBirth is invalid'),
-    body('avatar').optional().notEmpty().withMessage('avatar is empty'),
-    body('address').notEmpty().withMessage('address is required'),
-    body('role_id').notEmpty().withMessage('roleId is required'),
-    body('role_id').isMongoId().withMessage('roleId must be a mongoId'),
-    body('lang_id').notEmpty().withMessage('langId is required'),
-    body('lang_id').isMongoId().withMessage('langId must be a mongoId'),
-    body('phone_number').notEmpty().withMessage('phoneNumber is required'),
-    body('phone_number').isMobilePhone().withMessage('phoneNumber is invalid'),
+const validateEmailAndPassword = [
+  body('email', 'email is required').notEmpty().isEmail(),
+  body('password', 'password is required').notEmpty().isLength({ min: 6, max: 32 }),
+];
+
+const authValidation = {
+  login: () => validateEmailAndPassword,
+
+  register: () => validateEmailAndPassword,
+
+  getUserData: () => [query('token', 'Token is required').notEmpty()],
+
+  updateUser: () => [
+    body('fullname', 'fullname is required').notEmpty().optional(),
+    body('cccd', 'cccd is required').notEmpty().optional(),
+    body('gender', 'gender is required').notEmpty().optional().isIn(Object.values(GENDER)),
+    body('date_of_birth', 'dateOfBirth is required').notEmpty().optional(),
+    body('date_of_birth', 'dateOfBirth is invalid').isDate().optional(),
+    body('avatar', 'avatar is empty').optional().notEmpty().withMessage('avatar is empty'),
+    body('address', 'address is required').notEmpty().optional(),
+    body('role_id', 'roleId is required').notEmpty().optional(),
+    body('role_id', 'roleId must be a mongoId').isMongoId().optional(),
+    body('lang_id', 'langId is required').notEmpty().optional(),
+    body('lang_id', 'landId must be a mongoId').isMongoId().optional(),
+    body('phone_number', 'phoneNumber is required').notEmpty().optional(),
+    body('phone_number', 'phoneNumber is invalid').isMobilePhone().optional(),
   ],
 };
 
-module.exports = authValidation
+module.exports = authValidation;

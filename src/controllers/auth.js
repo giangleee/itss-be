@@ -1,40 +1,45 @@
 const { UserDaos } = require('../daos');
 const { UserService } = require('../services');
 const httpCode = require('../utils/http-codes');
-const asyncMiddleware = require('../middleware/async-middleware')
-const convertResponse = require('../utils/response-helper')
+const asyncMiddleware = require('../middleware/async-middleware');
+const convertResponse = require('../utils/response-helper');
+const _ = require('lodash');
 
-
-/**
- * @typedef {'login'|'register'} AuthController
- * @type {Record<AuthController, import('express').RequestHandler>}
- */
 const auth = {
-  login: async (req, res, next) => {
-    const { email, password } = req.body;
-    const user = await UserDaos.findOne({ email });
-    if (!user) throw 'User not found';
+  login: async (request, response) => {
+    const { email, password } = request.body;
+    const result = await UserService.getUserDataByCondition({email})
+    await UserService.comparePassword(password, result.userData.password)
 
-    const isMatch = UserService.comparePassword(password, user.password);
-    if (!isMatch) throw 'Wrong password';
-
-    const token = UserService.genToken(user._id);
-
-    convertResponse(null, 'Login successfully', token, res)
+    convertResponse(httpCode.SUCCESS, 'Login successfully', result, response);
   },
 
-  register: async (req, res, next) => {
-    const email = req.body.email;
-    const result = await UserDaos.findOne({ email });
-    if (result) throw 'Email already exists';
+  register: async (request, response) => {
+    const { email, password } = request.body;
+    await UserService.checkValidEmail(email);
 
-    const user = await UserDaos.createUser(req.body);
+    const result = await UserService.createUser({ email, password });
+    convertResponse(httpCode.CREATED_SUCCESS, 'Register successfully', result, response);
+  },
 
-    convertResponse(httpCode.CREATED_SUCCESS, 'Register successfully', user, res)
+  getUser: async (request, response) => {
+    const { token } = request.query;
+    const result = await UserService.decodeUserToken(token);
+
+    convertResponse(httpCode.SUCCESS, 'Get user data successfully', result, response);
+  },
+
+  updateUser: async (request, response) => {
+    const { _id } = request.params;
+    const result = await UserService.updateUserData({ _id, ...request.body})
+
+    convertResponse(httpCode.SUCCESS, 'Update user successfully', result, response);
   },
 };
 
 module.exports = {
   login: asyncMiddleware(auth.login),
   register: asyncMiddleware(auth.register),
+  getUser: asyncMiddleware(auth.getUser),
+  updateUser: asyncMiddleware(auth.updateUser),
 };

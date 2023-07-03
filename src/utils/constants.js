@@ -17,8 +17,11 @@ const STATUS_CODE = {
   IS_EXPIRED: 3,
 };
 
+const SALT_ROUNDS = 10
+
 module.exports = {
   JOB_TYPE,
   GENDER,
-  STATUS_CODE
+  STATUS_CODE,
+  SALT_ROUNDS
 }

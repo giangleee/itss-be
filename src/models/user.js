@@ -1,5 +1,6 @@
-const { Schema, model } = require('mongoose');
-const { ObjectId } = require('mongoose').Types;
+const mongoose = require('mongoose');
+
+const { Schema, model } = mongoose;
 
 const GENDER = {
   MAN: 0,
@@ -7,71 +8,38 @@ const GENDER = {
   NONE_OF_THEM_ABOVE: 2,
 };
 
-const User = Schema(
+const userSchema = new Schema(
   {
     email: {
       type: String,
-      require: true,
+      required: true,
       unique: true,
     },
     password: {
       type: String,
-      require: true,
+      required: true,
     },
-    fullName: {
-      type: String,
-      require: true,
-    },
-    cccd: {
-      type: String,
-      require: true,
-    },
+    fullName: String,
+    cccd: String,
     gender: {
       type: String,
-      require: true,
       enum: Object.values(GENDER),
     },
-    dateOfBirth: {
-      type: Date,
-      require: true,
-    },
+    dateOfBirth: Date,
     avatar: {
       type: String,
-      require: true,
-      default: 'img_default',
+      default: 'https://yt3.googleusercontent.com/ytc/AGIKgqNEz6zvmf7H6vVA5eBWARRTcnXUUP01djNEcEyMNw=s900-c-k-c0x00ffffff-no-rj',
     },
-    address: {
-      type: String,
-      require: true,
-    },
-    phoneNumber: {
-      type: String,
-      require: true,
-      unique: true,
-    },
-    token: {
-      type: String,
-      require: true,
-      unique: true,
-    },
-    city: {
-      type: String,
-      require: true,
-    },
-    district: {
-      type: String,
-      require: true,
-    },
-    address: {
-      type: String,
-      require: true,
-    },
+    address: String,
+    phoneNumber: String,
+    city: String,
+    district: String,
     role_id: {
-      type: ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'Role',
     },
     lang_id: {
-      type: ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'Language',
     },
   },
@@ -81,4 +49,6 @@ const User = Schema(
   },
 );
 
-module.exports = model('User', User);
+const User = model('User', userSchema);
+
+module.exports = User;

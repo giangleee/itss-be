@@ -12,7 +12,7 @@ const baseDaos = {
       const insertResponse = await model.create(data);
       return insertResponse;
     } catch (error) {
-      throw new customApiMessage(httpCodes.BAD_REQUEST, {}, 'Error');
+      throw new customApiMessage(httpCodes.BAD_REQUEST, {}, error);
     }
   },
   findOne: async (model, data) => {
