@@ -7,11 +7,8 @@ const { STATUS_CODE } = require('../utils/constants');
 
 const request = {
   createOne: async (req, res) => {
-    const { job_type, request_detail } = req.body;
-    // // TODO: Fake user id
-    const user_id = '5f9d7b3b3f0b7c2b1c3b3b3b';
-    const staff_id = '5f9d7b3b3f0b7c2b1c3b3b3b';
-    
+    const { job_type, user_id, staff_id, request_detail } = req.body;
+
     const requestDetail = await RequestDetailDaos.createRequestDetail({
       ...request_detail,
       user_id,
