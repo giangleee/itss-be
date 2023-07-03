@@ -17,7 +17,6 @@ const initRouter = (router) => {
   router.use('/staff', staffRouter);
   router.use('/auth', authRouter);
   router.use('/ratting', rattingRouter)
-  router.use('/me', meRouter);
   router.use(errorHandler);
   return router;
 };
