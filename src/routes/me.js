@@ -9,7 +9,7 @@ const { UserModel } = require('../models');
  */
 const initRouter = (router) => {
   router.get('/', authMiddleware.veryfiToken, async (req, res) => {
-    const user = await UserModel.findById(req.payload._id);
+    const user = await UserModel.findById(req.payload.userId);
     res.status(200).json({ data: user });
   });
 
