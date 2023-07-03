@@ -1,4 +1,4 @@
-const { body } = require('express-validator')
+const { body, param, query } = require('express-validator')
 
 const rattingValidation = {
     createRatting: () => [
@@ -13,6 +13,11 @@ const rattingValidation = {
         body('data.ratting', 'Ratting data is required').notEmpty(),
         body('data.comment', 'Invalid comment data type').isString(),
         body('data.ratting', 'Comment data is required').notEmpty(),
+    ],
+
+    getRatingDetail: () => [
+        query('staff_id', 'Invalid user data').isMongoId(),
+        query('staff_id', 'User Id is required').notEmpty(),
     ]
 }
 

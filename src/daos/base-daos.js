@@ -47,6 +47,12 @@ const baseDaos = {
       throw new customApiMessage(httpCodes.BAD_REQUEST, {}, 'Error');
     }
   },
+  findByAggregation: async (model, condition) => {
+    const result = await model.aggregate(condition);
+    if (result.length === 0)
+        throw new customApiMessage(httpCodes.UNPROCESSABLE_ENTITY, {}, 'Can not find');
+    return result
+  }
 };
 
 module.exports = baseDaos;

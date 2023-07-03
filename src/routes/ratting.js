@@ -11,6 +11,12 @@ const initRouter = (router) => {
     rattingController.createRatting,
   );
 
+  router.get(
+    '/',
+    validate(rattingValidation.getRatingDetail()),
+    rattingController.getRatingDetail,
+  );
+
   return router;
 };
 

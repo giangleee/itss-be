@@ -8,7 +8,7 @@ const httpCode = require('../utils/http-codes');
 const rattingDaos = {
   getRatingDetail: async (staff_id) => {
     if (ObjectId.isValid(staff_id)) {
-      const ratingDetail = await RattingModel.aggregate([
+      const condition = [
         {
           $match: {
             staff_id: new ObjectId(staff_id),
@@ -57,9 +57,8 @@ const rattingDaos = {
             request_detail: 1,
           },
         },
-      ]);
-      if (ratingDetail.length === 0)
-        throw new customApiMessage(httpCode.UNPROCESSABLE_ENTITY, {}, 'Can not find');
+      ];
+      const ratingDetail = await baseDaos.findByAggregation(RattingModel, condition);
       return ratingDetail;
     }
     throw new customApiMessage(httpCode.INTERNAL_SERVER_ERROR, {}, 'Invalid id');
@@ -67,6 +66,25 @@ const rattingDaos = {
   insertRatting: async (payload) => {
     const result = await baseDaos.insertData(RattingModel, payload);
     return result;
+  },
+  getListRatingByStaffId: async (staff_id) => {
+    const condition = [
+      {
+        $match: {
+          staff_id: new ObjectId(staff_id),
+        },
+      },
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'user_id',
+          foreignField: '_id',
+          as: 'user_detail',
+        },
+      },
+    ]
+    const result = await baseDaos.findByAggregation(RattingModel, condition)
+    return result
   },
 };
 

@@ -3,7 +3,6 @@ const router = express.Router();
 const requestRouter = require('./request');
 const staffRouter = require('./staff');
 const authRouter = require('./auth');
-const meRouter = require('./me');
 const { errorHandler } = require('../middleware');
 const rattingRouter = require('./ratting')
 
