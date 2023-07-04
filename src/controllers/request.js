@@ -20,6 +20,11 @@ const request = {
       request_detail_id: requestDetail._id,
     });
 
+    const requestListStaff = await RequestListStaffDaos.createRequest({
+      request_id: request._id,
+      user_id
+    })
+
     convertResponse(httpCode.CREATED_SUCCESS, 'Create request successfully', request, res);
   },
   getListApplyStaff: async (req, res) => {
