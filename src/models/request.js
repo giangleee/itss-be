@@ -1,17 +1,17 @@
-const { Schema, model } = require('mongoose');
-const { ObjectId } = require('mongoose').Types;
+const mongoose = require('mongoose');
+const { ObjectId } = mongoose.Types;
 const { JOB_TYPE } = require('../utils/constants');
 
-const Request = Schema(
+const requestSchema = new mongoose.Schema(
   {
     request_detail_id: {
       type: ObjectId,
-      require: true,
+      required: true,
       ref: 'RequestDetail',
     },
     job: {
       type: Number,
-      require: true,
+      required: true,
       enum: Object.values(JOB_TYPE),
       default: JOB_TYPE.SITTER,
     },
@@ -19,6 +19,9 @@ const Request = Schema(
   {
     timestamps: true,
     versionKey: false,
-  },
+  }
 );
-module.exports = model('Request', Request);
+
+const Request = mongoose.model('Request', requestSchema);
+
+module.exports = Request;

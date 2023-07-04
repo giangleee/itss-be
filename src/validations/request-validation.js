@@ -16,7 +16,6 @@ const requestValidation = {
       .withMessage('salary must be a number'),
     body('request_detail.policy').notEmpty().withMessage('policy is required'),
     body('user_id', 'User Id is invalid').notEmpty().isMongoId(),
-    body('staff_id', 'Staff Id is invalid').notEmpty().isMongoId(),
   ],
 
   getListApplyStaff: () => [
