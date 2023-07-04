@@ -33,7 +33,7 @@ const userSchema = new Schema(
     },
     address: String,
     phoneNumber: String,
-    city: String,
+    province: String,
     district: String,
     role_id: {
       type: Schema.Types.ObjectId,
