@@ -27,7 +27,7 @@ const authValidation = {
     body('phoneNumber', 'phoneNumber is required').notEmpty().optional(),
     body('phoneNumber', 'phoneNumber is invalid').isMobilePhone().optional(),
     body('address', 'address is required').notEmpty().optional(),
-    body('city', 'city is required').notEmpty().optional(),
+    body('province', 'province is required').notEmpty().optional(),
     body('district', 'district is required').notEmpty().optional(),
   ],
 };
