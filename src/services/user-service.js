@@ -10,7 +10,8 @@ const { ObjectId } = require('mongoose').Types;
 const userService = {
   comparePassword: async (password, userPassword) => {
     const passwordCompare = await bcrypt.compare(password, userPassword);
-    if (!passwordCompare) throw new customApiMessage(httpCodes.UNPROCESSABLE_ENTITY, {}, 'User or password wrong');
+    if (!passwordCompare)
+      throw new customApiMessage(httpCodes.UNPROCESSABLE_ENTITY, {}, 'User or password wrong');
   },
   genToken: (userId) => {
     return jwt.sign({ _id: userId }, process.env.JWT_SECRET, {
@@ -22,8 +23,8 @@ const userService = {
     if (!_.isNil(result))
       throw new customApiMessage(httpCodes.BAD_REQUEST, {}, 'Email already exists');
   },
-  createUser: async ({ email, password }) => {
-    const result = await UserDaos.createUser({ email, password: await hashPassword(password) });
+  createUser: async ({ password, ...rest }) => {
+    const result = await UserDaos.createUser({ ...rest, password: await hashPassword(password) });
     const jsonToken = await generateAccessToken(result._id);
 
     return { userData: result, jsonToken: jsonToken };
@@ -33,23 +34,22 @@ const userService = {
     const userData = await UserDaos.findOne({ _id: new ObjectId(decodedToken.userId) });
     return userData;
   },
-  updateUserData: async ({_id, ...payload}) => {
+  updateUserData: async ({ _id, ...payload }) => {
     const userData = await UserDaos.findOne({ _id: new ObjectId(_id) });
-    if (_.isNil(userData))
-      throw new customApiMessage(httpCodes.BAD_REQUEST, {}, 'Invalid user id');
+    if (_.isNil(userData)) throw new customApiMessage(httpCodes.BAD_REQUEST, {}, 'Invalid user id');
 
-    await UserDaos.updateOne({ _id }, { $set: payload })
+    await UserDaos.updateOne({ _id }, { $set: payload });
 
     return await UserDaos.findOne({ _id: new ObjectId(_id) });
   },
   getUserDataByCondition: async (condition) => {
-    const userData = await UserDaos.findOne(condition)
+    const userData = await UserDaos.findOne(condition);
     if (_.isNil(userData))
-      throw new customApiMessage(httpCodes.BAD_REQUEST, {}, 'Email is invalid')
+      throw new customApiMessage(httpCodes.BAD_REQUEST, {}, 'Email is invalid');
 
-      const jsonToken = await generateAccessToken(userData._id);
-    return { userData: userData, jsonToken: jsonToken }
-  }
+    const jsonToken = await generateAccessToken(userData._id);
+    return { userData: userData, jsonToken: jsonToken };
+  },
 };
 
 const hashPassword = async (password) => {

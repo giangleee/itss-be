@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
 
 const GENDER = {
-  MAN: 0,
-  WOMAN: 1,
-  NONE_OF_THEM_ABOVE: 2,
+  MAN: 'Male',
+  WOMAN: 'Female',
+  NONE_OF_THEM_ABOVE: 'Other',
 };
 
 const userSchema = new Schema(
@@ -28,7 +28,8 @@ const userSchema = new Schema(
     dateOfBirth: Date,
     avatar: {
       type: String,
-      default: 'https://yt3.googleusercontent.com/ytc/AGIKgqNEz6zvmf7H6vVA5eBWARRTcnXUUP01djNEcEyMNw=s900-c-k-c0x00ffffff-no-rj',
+      default:
+        'https://yt3.googleusercontent.com/ytc/AGIKgqNEz6zvmf7H6vVA5eBWARRTcnXUUP01djNEcEyMNw=s900-c-k-c0x00ffffff-no-rj',
     },
     address: String,
     phoneNumber: String,

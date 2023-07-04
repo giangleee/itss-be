@@ -10,8 +10,9 @@ const initRouter = (router) => {
   router.post('/login', validate(login()), authController.login);
   router.post('/register', validate(register()), authController.register);
   router.get('/', authController.getUser);
-  router.patch('/:_id', validate(updateUser()), authController.updateUser)
-
+  router.patch('/:_id', validate(updateUser()), authController.updateUser);
+  router.get('/check-valid-email', authController.checkValidEmail);
+  router.post('/signup', authController.signup);
   return router;
 };
 
