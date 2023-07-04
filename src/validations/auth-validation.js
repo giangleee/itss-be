@@ -24,8 +24,8 @@ const authValidation = {
     body('role_id', 'roleId must be a mongoId').isMongoId().optional(),
     body('lang_id', 'langId is required').notEmpty().optional(),
     body('lang_id', 'landId must be a mongoId').isMongoId().optional(),
-    body('phone_number', 'phoneNumber is required').notEmpty().optional(),
-    body('phone_number', 'phoneNumber is invalid').isMobilePhone().optional(),
+    body('phoneNumber', 'phoneNumber is required').notEmpty().optional(),
+    body('phoneNumber', 'phoneNumber is invalid').isMobilePhone().optional(),
   ],
 };
 
