@@ -7,12 +7,11 @@ const { STATUS_CODE } = require('../utils/constants');
 
 const request = {
   createOne: async (req, res) => {
-    const { job_type, user_id, staff_id, request_detail } = req.body;
+    const { job_type, user_id, request_detail } = req.body;
 
     const requestDetail = await RequestDetailDaos.createRequestDetail({
       ...request_detail,
       user_id,
-      staff_id,
       status: STATUS_CODE.IS_ON_HOLD,
     });
 
