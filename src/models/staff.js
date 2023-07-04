@@ -1,72 +1,72 @@
 const { Schema, model } = require('mongoose');
 const { GENDER, JOB_TYPE } = require('../utils/constants');
 
-const Staff = Schema(
+const staffSchema = new Schema(
   {
     rating_avg: {
       type: Number,
     },
     cccd: {
       type: String,
-      require: true,
+      required: true,
     },
     gender: {
       type: String,
-      require: true,
+      required: true,
       enum: Object.values(GENDER),
     },
     date_of_birth: {
       type: Date,
-      require: true,
+      required: true,
     },
     avatar: {
       type: String,
     },
     address: {
       type: String,
-      require: true,
+      required: true,
     },
     fullname: {
       type: String,
-      require: true,
+      required: true,
     },
     facebook: {
       type: String,
     },
     phone_number: {
       type: String,
-      require: true,
+      required: true,
       unique: true,
     },
     twitter: String,
     zalo: String,
     company_exp: {
       type: Number,
-      require: true,
+      required: true,
     },
     total_exp: {
       type: Number,
-      require: true,
+      required: true,
     },
     skill: {
       type: String,
-      require: true,
+      required: true,
     },
     city: {
       type: String,
-      require: true,
+      required: true,
     },
     district: {
       type: String,
-      require: true,
+      required: true,
     },
     address: {
       type: String,
-      require: true,
+      required: true,
     },
     job: {
       type: String,
-      require: true,
+      required: true,
       enum: Object.values(JOB_TYPE),
     },
     intro: {
@@ -74,8 +74,8 @@ const Staff = Schema(
     },
     email: {
       type: String,
-      require: true,
-    }
+      required: true,
+    },
   },
   {
     timestamps: true,
@@ -83,4 +83,6 @@ const Staff = Schema(
   },
 );
 
-module.exports = model('Staff', Staff);
+const Staff = model('Staff', staffSchema);
+
+module.exports = Staff;

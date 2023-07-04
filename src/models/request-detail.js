@@ -1,32 +1,33 @@
 const mongoose = require('mongoose');
-const constants = require('../utils/constants')
+const { Schema, model } = mongoose;
+const constants = require('../utils/constants');
 
-const RequestDetail = mongoose.Schema(
+const requestDetailSchema = new Schema(
   {
     staff_id: {
-      type: mongoose.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'Staff',
     },
     user_id: {
-      type: mongoose.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'User',
     },
     work_time: {
       type: String,
-      require: true,
+      required: true,
     },
     salary: {
       type: Number,
-      require: true,
+      required: true,
     },
     policy: {
       type: String,
-      require: true,
+      required: true,
     },
     other_note: String,
     status: {
       type: Number,
-      require: true,
+      required: true,
       enum: Object.values(constants.STATUS_CODE),
       default: constants.STATUS_CODE.IS_ON_HOLD,
     },
@@ -34,7 +35,9 @@ const RequestDetail = mongoose.Schema(
   {
     timestamps: true,
     versionKey: false,
-  },
+  }
 );
 
-module.exports = mongoose.model('RequestDetail', RequestDetail);
+const RequestDetail = model('RequestDetail', requestDetailSchema);
+
+module.exports = RequestDetail;

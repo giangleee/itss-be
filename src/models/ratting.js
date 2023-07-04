@@ -1,22 +1,23 @@
 const mongoose = require('mongoose');
+const { Schema, model } = mongoose;
 
-const Ratting = mongoose.Schema(
+const ratingSchema = new Schema(
   {
     staff_id: {
-      type: mongoose.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'Staff',
     },
     user_id: {
-      type: mongoose.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'User',
     },
     request_id: {
-      type: mongoose.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'Request',
     },
-    ratting: {
+    rating: {
       type: Number,
-      require: true,
+      required: true,
     },
     comment: String,
   },
@@ -26,4 +27,6 @@ const Ratting = mongoose.Schema(
   },
 );
 
-module.exports = mongoose.model('Ratting', Ratting);
+const Rating = model('Rating', ratingSchema);
+
+module.exports = Rating;

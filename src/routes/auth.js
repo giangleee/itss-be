@@ -3,7 +3,7 @@ const router = express.Router();
 const { authController } = require('../controllers');
 const { validate } = require('../middleware');
 const {
-  authValidation: { login, register, getUserData, updateUser },
+  authValidation: { login, register, updateUser },
 } = require('../validations');
 
 const initRouter = (router) => {

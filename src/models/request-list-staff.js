@@ -1,18 +1,20 @@
 const mongoose = require('mongoose');
 
-const RequestListStaff = mongoose.Schema(
+const { Schema, model } = mongoose;
+
+const requestListStaffSchema = new Schema(
   {
     request_id: {
-      type: mongoose.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'Request',
     },
     user_id: {
-      type: mongoose.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'User',
     },
     staff_ids: [
       {
-        type: mongoose.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'User',
       },
     ],
@@ -20,7 +22,9 @@ const RequestListStaff = mongoose.Schema(
   {
     timestamps: true,
     versionKey: false,
-  },
+  }
 );
 
-module.exports = mongoose.model('RequestListStaff', RequestListStaff);
+const RequestListStaff = model('RequestListStaff', requestListStaffSchema);
+
+module.exports = RequestListStaff;
