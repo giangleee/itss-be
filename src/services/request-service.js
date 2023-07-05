@@ -75,36 +75,37 @@ const requestService = {
       {
         $unwind: '$request_detail'
       },
-      {
-        $lookup: {
-          from: 'staffs',
-          localField: 'request_detail.staff_id',
-          foreignField: '_id',
-          as: 'request_detail.staff_detail',
-        },
-      },
-      {
-        $unwind: '$request_detail.staff_detail',
-      },
-      {
-        $lookup: {
-          from: 'users',
-          localField: 'request_detail.user_id',
-          foreignField: '_id',
-          as: 'request_detail.user_detail',
-        },
-      },
-      {
-        $unwind: '$request_detail.user_detail',
-      },
-      {
-        $project: {
-          _id: 1,
-          request_detail: 1,
-          job: 1,
-        }
-      }
+      // {
+      //   $lookup: {
+      //     from: 'staffs',
+      //     localField: 'request_detail.staff_id',
+      //     foreignField: '_id',
+      //     as: 'request_detail.staff_detail',
+      //   },
+      // },
+      // {
+      //   $unwind: '$request_detail.staff_detail',
+      // },
+      // {
+      //   $lookup: {
+      //     from: 'users',
+      //     localField: 'request_detail.user_id',
+      //     foreignField: '_id',
+      //     as: 'request_detail.user_detail',
+      //   },
+      // },
+      // {
+      //   $unwind: '$request_detail.user_detail',
+      // },
+      // {
+      //   $project: {
+      //     _id: 1,
+      //     request_detail: 1,
+      //     job: 1,
+      //   }
+      // }
     ])
+    console.log("🚀 ~ file: request-service.js:108 ~ getRequestDetail: ~ result:", result)
     if (result.length === 0)
       throw new CustomApiMessage(httpCode.BAD_REQUEST, {}, 'Can not find');
     return result
