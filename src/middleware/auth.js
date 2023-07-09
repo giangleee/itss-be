@@ -13,7 +13,7 @@ const auth = {
         return res.status(401).json({ message: 'Token expired' });
       }
       if (error instanceof jwt.JsonWebTokenError) {
-        return res.status(401).json({ message: 'Invalid token' });
+        return res.status(401).json({ message: 'Invalid token', error: error.message });
       }
       res.status(401).json({ message: error });
     }
