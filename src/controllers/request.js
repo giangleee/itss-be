@@ -1,5 +1,6 @@
 const { RequestDaos, RequestDetailDaos, RequestListStaffDaos, StaffDaos } = require('../daos');
 const httpCode = require('../utils/http-codes');
+const moongose = require('mongoose');
 const asyncMiddleware = require('../middleware/async-middleware');
 const convertResponse = require('../utils/response-helper');
 const { requestService } = require('../services');
@@ -23,8 +24,8 @@ const request = {
 
     const requestListStaff = await RequestListStaffDaos.createRequest({
       request_id: request._id,
-      user_id
-    })
+      user_id,
+    });
 
     convertResponse(httpCode.CREATED_SUCCESS, 'Create request successfully', request, res);
   },
@@ -62,7 +63,13 @@ const request = {
   },
   getListProgessRequest: async (req, res) => {
     const { tab, size } = req.query;
-    const results = await RequestDetailDaos.findWithCondition({ status: STATUS_CODE.IS_ON_HOLD });
+    const userId = req.payload.userId;
+    const results = await RequestDetailDaos.findWithCondition(
+      { status: STATUS_CODE.IS_ON_HOLD, user_id: userId},
+      tab,
+      size,
+      { createdAt: -1 },
+    );
     const requestDetails = results.map((result) => result.toJSON());
     const requests = await Promise.all(
       requestDetails.map(async (requestDetail) => {

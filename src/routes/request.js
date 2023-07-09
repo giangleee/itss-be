@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { requestController } = require('../controllers');
-const { validate } = require('../middleware');
+const { validate, authMiddleware } = require('../middleware');
 const {
   requestValidation: {
     createOneRequest,
@@ -32,7 +32,7 @@ const initRouter = (router) => {
       validate(removeStaffFromRequestListStaff()),
       requestController.removeStaffFromRequestListStaff,
     );
-  router.get('/list-progess', requestController.getListProgessRequest);
+  router.get('/list-progess', authMiddleware.veryfiToken, requestController.getListProgessRequest);
   router.get('/user', validate(getRequestBaseUserInfo()), requestController.getListRequestBaseUser);
   router.get('/', validate(requestDataValidate()), requestController.getRequestDetail);
 
