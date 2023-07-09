@@ -8,7 +8,10 @@ const _ = require('lodash');
 const StaffDaos = {
   findWithCondition: async (staff_ids, tab, size) => {
     try {
-      const response = await StaffModel.find({ _id: { $in: staff_ids } }).sort({ rating_avg: -1 });
+      let response;
+      if (staff_ids.length === 0)
+        response = await StaffModel.find().sort({rating_avg: -1})
+      else response = await StaffModel.find({ _id: { $in: staff_ids } }).sort({ rating_avg: -1 });
 
       return response;
     } catch (error) {

@@ -33,7 +33,7 @@ const request = {
     const requestListStaff = await RequestListStaffDaos.findOne({ request_id: request_id });
     if (!requestListStaff) throw 'Request not found';
     const staff_ids = requestListStaff.staff_ids;
-    const staffs = await StaffDaos.findWithCondition(staff_ids, tab, size);
+    const staffs = await StaffDaos.findWithCondition([], tab, size);
 
     convertResponse(null, 'Get list apply staff successfully', staffs, res);
   },
