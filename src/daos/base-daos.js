@@ -9,6 +9,7 @@ const baseDaos = {
    */
   insertData: async (model, data) => {
     try {
+      console.log('data', data);
       const insertResponse = await model.create(data);
       return insertResponse;
     } catch (error) {
