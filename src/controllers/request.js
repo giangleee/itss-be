@@ -66,7 +66,7 @@ const request = {
   },
   getListProgessRequest: async (req, res) => {
     const { tab, size } = req.query;
-    const results = await RequestDetailDaos.findWithCondition({ status: 1 });
+    const results = await RequestDetailDaos.findWithCondition({ status: STATUS_CODE.IS_ON_HOLD });
     const requestDetails = results.map((result) => result.toJSON());
     const requests = await Promise.all(
       requestDetails.map(async (requestDetail) => {

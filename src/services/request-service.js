@@ -86,17 +86,17 @@ const requestService = {
       // {
       //   $unwind: '$request_detail.staff_detail',
       // },
-      // {
-      //   $lookup: {
-      //     from: 'users',
-      //     localField: 'request_detail.user_id',
-      //     foreignField: '_id',
-      //     as: 'request_detail.user_detail',
-      //   },
-      // },
-      // {
-      //   $unwind: '$request_detail.user_detail',
-      // },
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'request_detail.user_id',
+          foreignField: '_id',
+          as: 'request_detail.user_detail',
+        },
+      },
+      {
+        $unwind: '$request_detail.user_detail',
+      },
       // {
       //   $project: {
       //     _id: 1,
