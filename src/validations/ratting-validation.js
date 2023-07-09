@@ -12,7 +12,7 @@ const rattingValidation = {
         body('data.ratting', 'Invalid ratting data type').isInt(),
         body('data.ratting', 'Ratting data is required').notEmpty(),
         body('data.comment', 'Invalid comment data type').isString(),
-        body('data.ratting', 'Comment data is required').notEmpty(),
+        body('data.comment', 'Comment data is required').notEmpty(),
     ],
 
     getRatingDetail: () => [

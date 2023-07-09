@@ -15,7 +15,7 @@ const rattingSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'Request',
     },
-    rating: {
+    ratting: {
       type: Number,
       required: true,
     },
