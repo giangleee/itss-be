@@ -4,6 +4,7 @@ const asyncMiddleware = require('../middleware/async-middleware');
 const convertResponse = require('../utils/response-helper');
 const { requestService } = require('../services');
 const { STATUS_CODE } = require('../utils/constants');
+const Staff = require('../models/staff');
 
 const request = {
   createOne: async (req, res) => {
@@ -50,19 +51,14 @@ const request = {
   acceptStaffFromRequestListStaff: async (req, res) => {
     const { request_id, staff_id } = req.params;
     const requestListStaff = await RequestListStaffDaos.findOne({ request_id: request_id });
-    const staff_ids = requestListStaff.staff_ids.filter((id) => id.toString() !== staff_id);
-    if (staff_ids.length === requestListStaff.staff_ids.length) {
-      res
-        .status(httpCode.BAD_REQUEST)
-        .json({ message: 'Staff is not exist in request list staff' });
-      return;
-    }
-    await RequestListStaffDaos.updateOne({ request_id: request_id }, { staff_ids });
+    const staffDetail = await Staff.findOne({_id: staff_id})
+
+    await RequestListStaffDaos.updateOne({ request_id: request_id }, { staff_ids: staffDetail._id });
     const request = await RequestDaos.findById(request_id);
     const request_detail_id = request.request_detail_id;
     await RequestDetailDaos.updateOne({ _id: request_detail_id }, { staff_id, status: 1 });
 
-    convertResponse(null, 'Accept staff successfully', null, res);
+    convertResponse(null, 'Accept staff successfully', requestListStaff, res);
   },
   getListProgessRequest: async (req, res) => {
     const { tab, size } = req.query;
