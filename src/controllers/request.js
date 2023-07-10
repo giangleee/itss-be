@@ -1,11 +1,11 @@
 const { RequestDaos, RequestDetailDaos, RequestListStaffDaos, StaffDaos } = require('../daos');
 const httpCode = require('../utils/http-codes');
-const moongose = require('mongoose');
 const asyncMiddleware = require('../middleware/async-middleware');
 const convertResponse = require('../utils/response-helper');
 const { requestService } = require('../services');
-const { STATUS_CODE } = require('../utils/constants');
+const { STATUS_CODE, JOB_TYPE } = require('../utils/constants');
 const Staff = require('../models/staff');
+
 
 const request = {
   createOne: async (req, res) => {
@@ -29,15 +29,16 @@ const request = {
 
     convertResponse(httpCode.CREATED_SUCCESS, 'Create request successfully', request, res);
   },
-  getListApplyStaff: async (req, res) => {
-    const { tab, size } = req.query;
-    const { request_id } = req.params;
-    const requestListStaff = await RequestListStaffDaos.findOne({ request_id: request_id });
-    if (!requestListStaff) throw 'Request not found';
-    const staff_ids = requestListStaff.staff_ids;
-    const staffs = await StaffDaos.findWithCondition([], tab, size);
+  getListApplyStaff: async (request, response) => {
+    const { request_id } = request.params;
+    const requestDetail = await RequestDaos.findOne({ _id: request_id });
 
-    convertResponse(null, 'Get list apply staff successfully', staffs, res);
+    let staffListDetail;
+    if (request.job === JOB_TYPE.BOTH)
+      staffListDetail = await StaffDaos.findWithCondition(null)
+    else staffListDetail = await StaffDaos.findWithCondition({ job: requestDetail.job.toString() })
+
+    convertResponse(null, 'Get list apply staff successfully', staffListDetail, response);
   },
   removeStaffFromRequestListStaff: async (req, res) => {
     const { staffs } = req.body;

@@ -6,16 +6,14 @@ const { ObjectId } = require('mongoose').Types;
 const _ = require('lodash');
 
 const StaffDaos = {
-  findWithCondition: async (staff_ids, tab, size) => {
+  findWithCondition: async (condition) => {
     try {
-      let response;
-      if (staff_ids.length === 0)
-        response = await StaffModel.find().sort({rating_avg: -1})
-      else response = await StaffModel.find({ _id: { $in: staff_ids } }).sort({ rating_avg: -1 });
-
-      return response;
+      if (condition === null)
+        return await StaffModel.find().sort({ rating_avg: -1 })
+      else
+        return await StaffModel.find(condition).sort({ rating_avg: -1 })
     } catch (error) {
-      throw new customApiMessage(httpCodes.BAD_REQUEST, {}, 'Error');
+      throw new customApiMessage(httpCodes.BAD_REQUEST, {}, error);
     }
   },
   getListStaffs: async (tab, size, { age, ...query }) => {

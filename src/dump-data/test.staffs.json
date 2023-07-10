@@ -1,0 +1,277 @@
+[{
+  "_id": {
+    "$oid": "648f3c8811f85e001ce85840"
+  },
+  "rating_avg": 4.5,
+  "cccd": "111122223",
+  "gender": "Male",
+  "dateOfBirth": "1990-11-11",
+  "avatar": "https://scontent.fhan14-3.fna.fbcdn.net/v/t1.6435-9/95663803_931742813987142_3428239803290746880_n.jpg?_nc_cat=104&cb=99be929b-59f725be&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=auvI-U9vvfMAX_dV9QX&_nc_ht=scontent.fhan14-3.fna&oh=00_AfCEk_2RZ6bmuwvBc9O_etnu0lGj3NIcixjSwly2QY6vvg&oe=64B7BBAC",
+  "address": "3333 Eleventh St, Ho Chi Minh City",
+  "fullName": "Trần Việt",
+  "facebook": "https://www.facebook.com/tranviet",
+  "phoneNumber": "0123456779",
+  "twitter": "https://twitter.com/tranviet",
+  "zalo": "0123456779",
+  "company_exp": 5,
+  "total_exp": 8,
+  "skill": "Java, Python, NodeJS",
+  "fullname": "Nguyễn Đức Thiện",
+  "date_of_birth": "1993-02-14",
+  "phone_number": "0123456477",
+  "job": 0
+},
+{
+  "_id": {
+    "$oid": "647e12a1baf0eb534030d76c"
+  },
+  "rating_avg": 4,
+  "cccd": "444455556",
+  "gender": "Male",
+  "avatar": "https://scontent.fhan14-2.fna.fbcdn.net/v/t39.30808-6/283416193_1186258168615880_4061551989491517514_n.jpg?_nc_cat=100&cb=99be929b-59f725be&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=JT_Bec3AHcQAX-Yjh92&_nc_ht=scontent.fhan14-2.fna&oh=00_AfCUBmHL7hPvskfVP3SqDnITQayFKP-rq2482a5hPpDfzQ&oe=64921384",
+  "address": "7777 Fourteenth St, Ho Chi Minh City",
+  "facebook": "https://www.facebook.com/thanhson",
+  "twitter": "https://twitter.com/thanhson",
+  "zalo": "0123456776",
+  "company_exp": 6,
+  "total_exp": 9,
+  "skill": "PHP, Laravel",
+  "date_of_birth": "1993-02-14",
+  "phone_number": "0123456776",
+  "fullname": "Lê Đức Sơn",
+  "job": 1
+},
+{
+  "_id": {
+    "$oid": "647e12a1baf0eb534030d769"
+  },
+  "rating_avg": 5,
+  "cccd": "111122223",
+  "gender": "Male",
+  "avatar": "https://scontent.fhan14-1.fna.fbcdn.net/v/t39.30808-1/347104653_1163064977696133_4703746752503919074_n.jpg?stp=dst-jpg_p480x480&_nc_cat=105&cb=99be929b-59f725be&ccb=1-7&_nc_sid=7206a8&_nc_ohc=F8h6lnXIHTkAX_zwEBS&_nc_ht=scontent.fhan14-1.fna&oh=00_AfDjTvf8e91JFExuPxtFj2ggYWkBHFvkpz6HS6AkhmjTzw&oe=64926AAB",
+  "address": "3333 Eleventh St, Ho Chi Minh City",
+  "facebook": "https://www.facebook.com/tranviet",
+  "twitter": "https://twitter.com/tranviet",
+  "zalo": "0123456779",
+  "company_exp": 5,
+  "total_exp": 8,
+  "skill": "Java, Python, NodeJS",
+  "date_of_birth": "1990-11-11",
+  "phone_number": "0123456779",
+  "fullname": "Lê Thanh Giang",
+  "job": 0
+},
+{
+  "_id": {
+    "$oid": "647e12a1baf0eb534030d774"
+  },
+  "rating_avg": 4,
+  "cccd": "222233334",
+  "gender": "Female",
+  "address": "9999 Twenty-second St, Ho Chi Minh City",
+  "facebook": "https://www.facebook.com/linhnguyen",
+  "twitter": "https://twitter.com/linhnguyen",
+  "zalo": "0123456768",
+  "company_exp": 5,
+  "total_exp": 8,
+  "skill": "C++, Python",
+  "date_of_birth": "1993-10-22",
+  "phone_number": "0123456768",
+  "fullname": "Lương Thị Tâm",
+  "avatar": "https://scontent.fhan14-3.fna.fbcdn.net/v/t39.30808-1/347635090_980191409821605_9083187072725207852_n.jpg?stp=dst-jpg_s480x480&_nc_cat=111&cb=99be929b-59f725be&ccb=1-7&_nc_sid=7206a8&_nc_ohc=NaIiO6-COxAAX8Zvxt9&_nc_ht=scontent.fhan14-3.fna&oh=00_AfApRHUVMObeOiDrWqVTB9UouMRqkQgGOE6R-2wl4DQ0sg&oe=6492C125",
+  "job": 1
+},
+{
+  "_id": {
+    "$oid": "647e12a1baf0eb534030d76a"
+  },
+  "rating_avg": 4,
+  "cccd": "222233334",
+  "gender": "Female",
+  "address": "4444 Twelfth St, Ho Chi Minh City",
+  "facebook": "https://www.facebook.com/ngochuyen",
+  "twitter": "https://twitter.com/ngochuyen",
+  "zalo": "0123456778",
+  "company_exp": 7,
+  "total_exp": 10,
+  "skill": "C++, C#, Ruby",
+  "date_of_birth": "1985-12-12",
+  "phone_number": "0123456778",
+  "fullname": "Nguyễn Thị Thúy",
+  "avatar": "https://scontent.fhan14-1.fna.fbcdn.net/v/t39.30808-6/228166131_1120772468332599_4234082375903548_n.jpg?_nc_cat=105&cb=99be929b-59f725be&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=7igDMM2T8BoAX9lkYyZ&_nc_ht=scontent.fhan14-1.fna&oh=00_AfCteqinT8a0NEWaPU4o6Ck3hnSBrQH6RjM5wQWNRbKDIQ&oe=6494AF06",
+  "job": 0
+},
+{
+  "_id": {
+    "$oid": "647e12a1baf0eb534030d76b"
+  },
+  "rating_avg": 3.5,
+  "cccd": "333344445",
+  "gender": "Male",
+  "address": "5555 Thirteenth St, Ho Chi Minh City",
+  "facebook": "https://www.facebook.com/ducanh",
+  "twitter": "https://twitter.com/ducanh",
+  "zalo": "0123456777",
+  "company_exp": 3,
+  "total_exp": 5,
+  "skill": "React, Angular",
+  "date_of_birth": "1982-01-13",
+  "phone_number": "0123456777",
+  "fullname": "Dư Cảnh",
+  "job": 1
+},
+{
+  "_id": {
+    "$oid": "647e12a1baf0eb534030d76d"
+  },
+  "rating_avg": 3.5,
+  "cccd": "555566667",
+  "gender": "Female",
+  "address": "9999 Fifteenth St, Ho Chi Minh City",
+  "facebook": "https://www.facebook.com/thuha",
+  "twitter": "https://twitter.com/thuha",
+  "zalo": "0123456775",
+  "company_exp": 2,
+  "total_exp": 4,
+  "skill": "VueJS, GraphQL",
+  "date_of_birth": "1996-03-15",
+  "phone_number": "0123456775",
+  "fullname": "Đinh Thị Ngọc Anh",
+  "avatar": "https://scontent.fhan14-3.fna.fbcdn.net/v/t1.6435-9/141553301_1293664264326377_5941242472032597552_n.jpg?_nc_cat=104&cb=99be929b-59f725be&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=KT67uhyxM8gAX98m2SO&_nc_ht=scontent.fhan14-3.fna&oh=00_AfDV3HPXjYir-op2aAUi1o88fwcLSfbYtAAv4eWmp1JArQ&oe=64B64167",
+  "job": 0
+},
+{
+  "_id": {
+    "$oid": "647e12a1baf0eb534030d771"
+  },
+  "rating_avg": 4,
+  "cccd": "999900001",
+  "gender": "Male",
+  "address": "4444 Nineteenth St, Ho Chi Minh City",
+  "facebook": "https://www.facebook.com/ngocanh",
+  "twitter": "https://twitter.com/ngocanh",
+  "zalo": "0123456771",
+  "company_exp": 6,
+  "total_exp": 9,
+  "skill": "NodeJS, ExpressJS",
+  "date_of_birth": "1989-07-19",
+  "phone_number": "0123456771",
+  "fullname": "Nguyễn Thụy",
+  "avatar": "https://scontent.fhan14-4.fna.fbcdn.net/v/t1.6435-1/68833933_101128164586790_485364504545198080_n.jpg?stp=dst-jpg_p480x480&_nc_cat=102&cb=99be929b-59f725be&ccb=1-7&_nc_sid=7206a8&_nc_ohc=tMhcOdLMmEMAX-9gd2E&_nc_ht=scontent.fhan14-4.fna&oh=00_AfBXNojTxAskDCO5AsMDrIjeY_hILIsx12CVJXaV7Xc2UA&oe=64B624A8",
+  "job": 1
+},
+{
+  "_id": {
+    "$oid": "647e12a1baf0eb534030d775"
+  },
+  "rating_avg": 3.5,
+  "cccd": "333344445",
+  "gender": "Male",
+  "address": "1111 Twenty-third St, Ho Chi Minh City",
+  "facebook": "https://www.facebook.com/vanthanh",
+  "twitter": "https://twitter.com/vanthanh",
+  "zalo": "0123456767",
+  "company_exp": 4,
+  "total_exp": 6,
+  "skill": "Java, Hibernate",
+  "date_of_birth": "1986-11-23",
+  "phone_number": "0123456767",
+  "fullname": "Văn Thanh",
+  "job": 0
+},
+{
+  "_id": {
+    "$oid": "647e12a1baf0eb534030d76e"
+  },
+  "rating_avg": 4,
+  "cccd": "666677778",
+  "gender": "Male",
+  "address": "1111 Sixteenth St, Ho Chi Minh City",
+  "facebook": "https://www.facebook.com/vietanh",
+  "twitter": "https://twitter.com/vietanh",
+  "zalo": "0123456774",
+  "company_exp": 4,
+  "total_exp": 7,
+  "skill": "JavaScript, TypeScript",
+  "date_of_birth": "1995-04-16",
+  "phone_number": "0123456774",
+  "fullname": "Việt Anh",
+  "job": 1
+},
+{
+  "_id": {
+    "$oid": "647e12a1baf0eb534030d76f"
+  },
+  "rating_avg": 3.5,
+  "cccd": "777788889",
+  "gender": "Female",
+  "address": "2222 Seventeenth St, Ho Chi Minh City",
+  "facebook": "https://www.facebook.com/thanhthu",
+  "twitter": "https://twitter.com/thanhthu",
+  "zalo": "0123456773",
+  "company_exp": 1,
+  "total_exp": 3,
+  "skill": "Ruby on Rails, PostgreSQL",
+  "date_of_birth": "1992-05-17",
+  "phone_number": "0123456773",
+  "fullname": "Lê Thị Hà",
+  "avatar": "https://scontent.fhan14-3.fna.fbcdn.net/v/t39.30808-1/331312133_1239028560032736_1834322836759151814_n.jpg?stp=dst-jpg_p480x480&_nc_cat=104&cb=99be929b-59f725be&ccb=1-7&_nc_sid=7206a8&_nc_ohc=-5Zr_gsmKmUAX_IloIk&_nc_ht=scontent.fhan14-3.fna&oh=00_AfCErYoulJaKzM_GmvSknGmabYmolKKhKpAmm7whW-fa_A&oe=64947861",
+  "job": 0
+},
+{
+  "_id": {
+    "$oid": "647e12a1baf0eb534030d770"
+  },
+  "rating_avg": 4.5,
+  "cccd": "888899990",
+  "gender": "Male",
+  "address": "3333 Eighteenth St, Ho Chi Minh City",
+  "facebook": "https://www.facebook.com/huuphat",
+  "twitter": "https://twitter.com/huuphat",
+  "zalo": "0123456772",
+  "company_exp": 9,
+  "total_exp": 12,
+  "skill": "Java, Spring",
+  "date_of_birth": "1991-06-18",
+  "phone_number": "0123456772",
+  "fullname": "Hữu Phát",
+  "job": 1
+},
+{
+  "_id": {
+    "$oid": "647e12a1baf0eb534030d772"
+  },
+  "rating_avg": 3.5,
+  "cccd": "000011112",
+  "gender": "Female",
+  "address": "5555 Twentieth St, Ho Chi Minh City",
+  "facebook": "https://www.facebook.com/hanhnguyen",
+  "twitter": "https://twitter.com/hanhnguyen",
+  "zalo": "0123456770",
+  "company_exp": 2,
+  "total_exp": 4,
+  "skill": "React Native, Redux",
+  "date_of_birth": "1994-08-20",
+  "phone_number": "0123456770",
+  "fullname": "Hạnh Nguyễn",
+  "job": 0
+},
+{
+  "_id": {
+    "$oid": "647e12a1baf0eb534030d773"
+  },
+  "rating_avg": 4.5,
+  "cccd": "111122223",
+  "gender": "Male",
+  "address": "7777 Twenty-first St, Ho Chi Minh City",
+  "facebook": "https://www.facebook.com/tranduc",
+  "twitter": "https://twitter.com/tranduc",
+  "zalo": "0123456769",
+  "company_exp": 8,
+  "total_exp": 12,
+  "skill": "Python, Django",
+  "date_of_birth": "1988-09-21",
+  "phone_number": "0123456769",
+  "fullname": "Trần Đức",
+  "job": 1
+}]
