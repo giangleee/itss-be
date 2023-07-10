@@ -45,14 +45,14 @@ const requestService = {
       {
         $unwind: '$request_detail.request_detail_data',
       },
-      {
-        $project: {
-          _id: 1,
-          staff_detail: 1,
-          request_detail: 1,
-        },
-      },
-    ]);
+      // {
+      //   $project: {
+      //     _id: 1,
+      //     staff_detail: 1,
+      //     request_detail: 1,
+      //   },
+      // },
+    ]).sort({createdAt: -1});
     if (result.length === 0)
         throw new CustomApiMessage(httpCode.BAD_REQUEST, {}, 'Can not find')
     return result

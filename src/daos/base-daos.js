@@ -18,7 +18,7 @@ const baseDaos = {
   },
   findOne: async (model, data) => {
     try {
-      const findOneResponse = await model.findOne(data);
+      const findOneResponse = await model.findOne(data).sort({createdAt: -1});
       return findOneResponse;
     } catch (error) {
       throw new customApiMessage(httpCodes.BAD_REQUEST, {}, 'Error');
