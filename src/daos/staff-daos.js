@@ -38,6 +38,10 @@ const StaffDaos = {
       return findResult;
     }
   },
+  updateOne: async (condition, data) => {
+    const response = await baseDaos.updateOne(StaffModel, condition, data);
+    return response;
+  },
 };
 
 module.exports = StaffDaos;

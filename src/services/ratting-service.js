@@ -23,6 +23,10 @@ const rattingService = {
     }
     throw new CustomApiMessage(httpCode.BAD_REQUEST, {}, 'Invalid id data');
   },
+  caculateRatingNumber: async (data) => {
+    const averageData = data.reduce((total, next) => total + next.ratting, 0) / data.length;
+    return averageData;
+  }
 };
 
 module.exports = rattingService;

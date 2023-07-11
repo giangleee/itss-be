@@ -86,6 +86,9 @@ const rattingDaos = {
     const result = await baseDaos.findByAggregation(RattingModel, condition)
     return result
   },
+  findByCondition: async (condition) => {
+    return await baseDaos.findByCondition(RattingModel, condition)
+  }
 };
 
 module.exports = rattingDaos;
